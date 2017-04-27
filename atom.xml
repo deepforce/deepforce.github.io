@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-04-27T15:11:07.000Z</updated>
+  <updated>2017-04-27T18:24:04.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -15,11 +15,190 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Moving Tables]]></title>
+    <link href="http://weirdforce.com/2016/03/09/Moving-Tables/"/>
+    <id>http://weirdforce.com/2016/03/09/Moving-Tables/</id>
+    <published>2016-03-08T16:12:49.000Z</published>
+    <updated>2017-04-27T18:24:04.000Z</updated>
+    <content type="html"><![CDATA[<p>今天AC了另一道比较有趣的题目～</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1050" target="_blank" rel="external">题目</a></strong></p>
+<a id="more"></a>
+<p>房间结构如下:<br><img src="/images/1050-1.gif" alt="Alt text"></p>
+<p>搬桌子规则如下：<br><img src="/images/1050-2.gif" alt="Alt text"></p>
+<p>解题思路：<br>首先，可以先仔细地看题，我们可以从题目中看出，这是一个400个房间，奇数号房间和偶数号房间相对，走廊只允许通过一张桌子且将桌子从一间房搬到另一间房间所花的时间为10mins。<br>仔细考虑题目，我们可以知道每两个房间（奇房间和相对应的偶房间）共享一块走廊区域，于是可以很清晰地将400个房间划分为200组。<br>根据题意，我们需要求出最小的搬运时间。这里需要注意的是，我们如果使用了集合区间的包含关系来划分各个房间时，会掉进一个误区。在这里，我们很清楚地知道，无交集的两个集合可以看作是两个房间互不影响。那么是不是只要不断地检测互不影响的组数，将其归为一类，就能知道最短的时间呢？<br>答案是否定的，在这里，我们可以假设，有三张桌子要进行搬运，其中分别为：1号搬到10号，11号搬到13号，14号搬到29号。显然，1-10和11-13互不影响，也同14－29互不影响，而11-13却是和14-29存在影响的。当我们将它们归为一组，那么答案显然不是题目要求的“最短”所需时间。所以这种方法并不理想。（卡了我挺久。。。）<br>因此，我们将搬桌子这个过程进行一定地抽象，可以看作是进行两个组之间地连线。那么，显然，当存在有两条线相交时，他们会相互影响，导致时间增加。那么此问题就可以简化为求出最多有多少条线相交于同一点（即同一块走廊区域）。</p>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="function"><span class="keyword">void</span> <span class="title">max1</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span>
+</span>{
+    <span class="keyword">int</span> k;
+    <span class="keyword">if</span> (a&gt;b)
+    {
+        k=a;
+        a=b;
+        b=k;
+    }
+}
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">int</span> t,n,flag,s,u,maxx;
+    <span class="keyword">int</span> count1;
+    <span class="built_in">cin</span>&gt;&gt;t;
+    <span class="keyword">while</span>(t--)
+    {
+    maxx=<span class="number">0</span>;
+    <span class="keyword">int</span> x[<span class="number">201</span>]={<span class="number">0</span>};
+    <span class="built_in">cin</span>&gt;&gt;n;
+    <span class="keyword">while</span>(n--)
+    {
+        <span class="built_in">cin</span>&gt;&gt;s&gt;&gt;u;
+        max1(s,u);
+        s=(s+<span class="number">1</span>)/<span class="number">2</span>;
+        u=(u+<span class="number">1</span>)/<span class="number">2</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> j=s;j&lt;=u;j++)
+                 x[j]++;
+    }
+
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">200</span>;i++)
+    {
+        <span class="keyword">if</span>(maxx &lt; x[i])
+                maxx=x[i];
+    }
+    count1=<span class="number">10</span>*maxx;
+    <span class="built_in">cout</span>&lt;&lt;count1&lt;&lt;endl;
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天AC了另一道比较有趣的题目～</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1050">题目</a></strong></p>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[FatMouse' Trade]]></title>
+    <link href="http://weirdforce.com/2016/03/07/FatMouse_Trade/"/>
+    <id>http://weirdforce.com/2016/03/07/FatMouse_Trade/</id>
+    <published>2016-03-06T16:12:49.000Z</published>
+    <updated>2017-04-27T17:37:10.000Z</updated>
+    <content type="html"><![CDATA[<p>今天重新翻出了HDU的ACM Steps中的题目做了一下，发现一道比较简单的题目。</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1009" target="_blank" rel="external">题目</a></strong></p>
+<a id="more"></a>
+<p>题目的思路大致可以分为两个部分：</p>
+<p>第一部分：将每个房间中JavaBeans和cat food的比例（精确到小数点后三位）分别求出来并存在一个数组之中，并将这个数组进行从大到小的排序。</p>
+<p>第二部分：对排序好的数组从大到小，依次累加其对应的JavaBeans的数量直至cat food不足以付出一个房间的cat food要求，再用之前的比例进行计算，统计所得到的所有JavaBeans的数量。</p>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span>
+<span class="keyword">struct</span> c{
+    <span class="keyword">int</span> j;
+<span class="keyword">int</span> u;
+<span class="keyword">double</span> k;
+    };
+    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">struct</span> c *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span>
+</span>{
+    <span class="keyword">if</span>(left &gt;= right)
+        <span class="keyword">return</span>;
+    <span class="keyword">int</span> x = left;
+    <span class="keyword">int</span> y = right;
+    <span class="keyword">double</span> key = a[left].k;
+    <span class="keyword">double</span> key1 = a[left].j;
+    <span class="keyword">double</span> key2 = a[left].u;
+
+    <span class="keyword">while</span>(x&lt;y)
+    {
+        <span class="keyword">while</span>(x&lt;y &amp;&amp; key &lt;= a[y].k)
+        {
+            y--;
+        }
+
+        a[x].j=a[y].j;
+           a[x].u=a[y].u;
+        a[x].k=a[y].k;
+
+        <span class="keyword">while</span>(x&lt;y &amp;&amp; key &gt;=a[x].k)
+        {
+            x++;
+        }   
+
+        a[y].j=a[x].j;
+        a[y].u=a[x].u;
+        a[y].k=a[x].k;
+    }
+
+    a[x].j = key1;
+    a[x].u = key2;
+    a[x].k = key;
+    sort(a, left, x - <span class="number">1</span>);
+    sort(a, x+<span class="number">1</span>, right);
+
+}
+
+<span class="keyword">struct</span> c f[<span class="number">1000</span>];
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">int</span> m,n,i;
+    <span class="keyword">int</span> a,b;
+    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;m,&amp;n)!=EOF &amp;&amp; m!=-<span class="number">1</span> &amp;&amp; n!=-<span class="number">1</span>)
+    {
+        <span class="keyword">double</span> count=<span class="number">0</span>;
+        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)
+        {
+        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;a,&amp;b);
+        f[i].j=a;
+        f[i].u=b;
+        f[i].k=(<span class="keyword">double</span>)a/b;
+        }
+        sort(f,<span class="number">1</span>,n);
+        <span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)
+        {
+            <span class="keyword">if</span>(m &gt;= f[i].u)
+                count+=f[i].j;
+            <span class="keyword">else</span>
+            {    
+                count=count+f[i].k*m;
+                <span class="keyword">break</span>;
+            }
+            m-=f[i].u;
+        }
+        <span class="built_in">printf</span>(<span class="string">"%.3f\n"</span>, count);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>仔细想想，应该还有更简便的方法，期待下次能更新～</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天重新翻出了HDU的ACM Steps中的题目做了一下，发现一道比较简单的题目。</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1009">题目</a></strong></p>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Gale-Shapley算法]]></title>
     <link href="http://weirdforce.com/2016/03/02/Gale-Shapley/"/>
     <id>http://weirdforce.com/2016/03/02/Gale-Shapley/</id>
     <published>2016-03-02T03:39:38.000Z</published>
-    <updated>2017-04-27T15:11:07.000Z</updated>
+    <updated>2017-04-27T15:32:57.000Z</updated>
     <content type="html"><![CDATA[<p>今天的算法设计与分析课程讲到了一个非常有趣的问题，于是拿来博客分享一下。<br>首先，先来介绍一下稳定婚姻问题。<br><a id="more"></a></p>
 <p><strong> “稳定婚姻问题”在生活中是一个典型的问题，通俗地可叙述为：当前有n位男生和n位女生最后要组成稳定的婚姻家庭。在过程的开始之前，男生和女生在各自的心目中都按照喜爱程度对n位异性有了各自的排序，然后他们开始选择自己的对象。问如何组合才能使得他们之间得婚姻是稳定的。</strong></p>
 <p>这个问题刚刚拿出来看可能让人一头雾水，怎么匹配他们才算稳定啊？不稳定的定义又是什么呢？<br>于是问题来到了解决稳定的定义上，通过题目很容易看出，每个男生和女生对异性都有一个排序，而稳定的前提就建立在这排序上。通过分析，我们很容易看出，当一对男女在对方的排序上都是第一，但他们却不能在一起，将就地和另一个伴侣在一起时，那么他们的婚姻就是不稳定的。<br>那么要怎么配对才会使得所有的婚姻都是稳定的呢？<br>可能很多人会想到一种策略：那就是先通过一种不稳定的配对方式，再不断地去修改这种配对方式使得所有人的婚姻都是稳定的。例如有一对想私奔（即不稳定）的情侣，则按他们的愿望进行情侣对换，直到最终消除所有的不稳定组合。这种方法虽然有一定程度上能满足稳定性，但这种策略的局限在于它不一定存在一个“最终结果”。因为有可能这种对换会不停持续下去，形成一个死循环，无法确定一个完整的方案。<br>那么，到底应该如何进行配对呢？<br>这里，我们来介绍一个算法，叫Gale-Shapley算法。<br>1962年，美国数学家David Gale和Lloyd Shapley发明了一种寻找稳定婚姻的策略，人们称之为延迟认可算法（Gale-Shapley算法）。<br>先对所有男生进行落选标记，称其为自由男。当存在自由男时，进行以下操作：</p>
