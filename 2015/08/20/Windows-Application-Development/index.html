@@ -1,0 +1,809 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="google-site-verification" content="fL0URIePi-zcmsw2KhBREs9vmyMa5g-Q-NpxuAeELrk" />
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="a funny and weird place" />
+
+
+
+  <meta name="keywords" content="Windows应用开发," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Zack's Park" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="为了完成Windows应用的开发，借本博客进行临时的笔记处理点~ 1.Windows应用(C#)内部文件说明Description  App.xaml / App.xaml.cs定义应用程序的入口点，初始化应用程序范围内的资源,，显示应用程序用户界面  MainPage.xaml / MainPage.xaml.cs定义应用程序中的程序页面（带有用户界面的页面）  ApplicationIcon.">
+<meta name="keywords" content="Windows应用开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Application Development (1)">
+<meta property="og:url" content="http://weirdforce.com/2015/08/20/Windows-Application-Development/index.html">
+<meta property="og:site_name" content="Zack's Park">
+<meta property="og:description" content="为了完成Windows应用的开发，借本博客进行临时的笔记处理点~ 1.Windows应用(C#)内部文件说明Description  App.xaml / App.xaml.cs定义应用程序的入口点，初始化应用程序范围内的资源,，显示应用程序用户界面  MainPage.xaml / MainPage.xaml.cs定义应用程序中的程序页面（带有用户界面的页面）  ApplicationIcon.">
+<meta property="og:updated_time" content="2015-08-20T15:00:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows Application Development (1)">
+<meta name="twitter:description" content="为了完成Windows应用的开发，借本博客进行临时的笔记处理点~ 1.Windows应用(C#)内部文件说明Description  App.xaml / App.xaml.cs定义应用程序的入口点，初始化应用程序范围内的资源,，显示应用程序用户界面  MainPage.xaml / MainPage.xaml.cs定义应用程序中的程序页面（带有用户界面的页面）  ApplicationIcon.">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Windows Application Development (1) | Zack's Park </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-66442955-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?de962538fe2ce689558201f412ef2201";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Zack's Park</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '8aJz6PXWWckDKqnH5b-y','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Windows Application Development (1)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-20T20:21:58+08:00" content="2015-08-20">
+            2015-08-20
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Development/" itemprop="url" rel="index">
+                  <span itemprop="name">Development</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/08/20/Windows-Application-Development/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/20/Windows-Application-Development/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="为了完成Windows应用的开发，借本博客进行临时的笔记处理点~">为了完成Windows应用的开发，借本博客进行临时的笔记处理点~</h1><hr>
+<h3 id="1-Windows应用(C#)内部文件说明">1.Windows应用(C#)内部文件说明</h3><p><strong>Description</strong></p>
+<ol>
+<li><p>App.xaml / App.xaml.cs<br>定义应用程序的入口点，初始化应用程序范围内的资源,，显示应用程序用户界面</p>
+</li>
+<li><p>MainPage.xaml / MainPage.xaml.cs<br>定义应用程序中的程序页面（带有用户界面的页面）</p>
+</li>
+<li><p>ApplicationIcon.png<br>一种带有图标的图像文件，代表了手机应用程序列表中应用程序的图标</p>
+</li>
+<li><p>Background.png<br>一种带有图标的图像文件，代表了在开始页面上应用程序的图表</p>
+</li>
+<li><p>SplashScreenImage.jpg<br>这个图片会在应用程序第一次被启动时显示。启动画面会给用户一个即时的反馈，告诉用户应用程序正在启动直到成功跳转到应用程序的第一个页面。用户的启动画面可以和应用程序的一个页面设计的非常相似，这样能给使用这一个应用程序被快速加载的感觉。</p>
+</li>
+<li><p>Properties\AppManifest.xml<br>一个生成应用程序包所必需的应用程序清单文件</p>
+</li>
+<li><p>Properties\AssemblyInfo.cs<br>包含名称和版本的元数据，这些元数据将被嵌入到生成的程序集</p>
+</li>
+<li><p>Properties\WMAppManifest.xml<br>一个包含与Windows Phone Silverlight应用程序相关的特定元数据的清单文件，且包含了用于Windows Phone的Silverlight所具有的特定功能</p>
+</li>
+<li><p>References folder<br>一些库文件（集）的列表，为应用程序的工作提供功能和服务。</p>
+<h1 id="<!-_more_->"><a id="more"></a></h1></li>
+</ol>
+<p>App.xaml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Application</span> </span></div><div class="line">    <span class="attr">x:Class</span>=<span class="string">"HelloPhone.App"</span></div><div class="line">    <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>       </div><div class="line">    <span class="attr">xmlns:x</span>=<span class="string">"http://schemas.microsoft.com/winfx/2006/xaml"</span></div><div class="line">    <span class="attr">xmlns:phone</span>=<span class="string">"clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"</span></div><div class="line">    <span class="attr">xmlns:shell</span>=<span class="string">"clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--Application Resources--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Application.Resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Application.Resources</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Application.ApplicationLifetimeObjects</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--Required object that handles lifetime events for the application--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">shell:PhoneApplicationService</span> </span></div><div class="line">            <span class="attr">Launching</span>=<span class="string">"Application_Launching"</span> <span class="attr">Closing</span>=<span class="string">"Application_Closing"</span> </div><div class="line">            <span class="attr">Activated</span>=<span class="string">"Application_Activated"</span> <span class="attr">Deactivated</span>=<span class="string">"Application_Deactivated"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">Application.ApplicationLifetimeObjects</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">Application</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>App.xaml.cs<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// Microsoft Developer &amp; Platform Evangelism</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// Copyright (c) Microsoft Corporation. All rights reserved.</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, </span></div><div class="line"><span class="comment">// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES </span></div><div class="line"><span class="comment">// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// The example companies, organizations, products, domain names,</span></div><div class="line"><span class="comment">// e-mail addresses, logos, people, places, and events depicted</span></div><div class="line"><span class="comment">// herein are fictitious.  No association with any real company,</span></div><div class="line"><span class="comment">// organization, product, domain name, email address, logo, person,</span></div><div class="line"><span class="comment">// places, or events is intended or should be inferred.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> System.Linq;</div><div class="line"><span class="keyword">using</span> System.Net;</div><div class="line"><span class="keyword">using</span> System.Windows;</div><div class="line"><span class="keyword">using</span> System.Windows.Controls;</div><div class="line"><span class="keyword">using</span> System.Windows.Documents;</div><div class="line"><span class="keyword">using</span> System.Windows.Input;</div><div class="line"><span class="keyword">using</span> System.Windows.Media;</div><div class="line"><span class="keyword">using</span> System.Windows.Media.Animation;</div><div class="line"><span class="keyword">using</span> System.Windows.Navigation;</div><div class="line"><span class="keyword">using</span> System.Windows.Shapes;</div><div class="line"><span class="keyword">using</span> Microsoft.Phone.Controls;</div><div class="line"><span class="keyword">using</span> Microsoft.Phone.Shell;</div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">HelloPhone</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">App</span> : <span class="title">Application</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></div><div class="line">        <span class="comment"><span class="doctag">///</span> Provides easy access to the root frame of the Phone Application.</span></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>The root frame of the Phone Application.<span class="doctag">&lt;/returns&gt;</span></span></div><div class="line">        <span class="keyword">public</span> PhoneApplicationFrame RootFrame &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</div><div class="line"></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></div><div class="line">        <span class="comment"><span class="doctag">///</span> Constructor for the Application object.</span></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">App</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">// Global handler for uncaught exceptions. </span></div><div class="line">            UnhandledException += Application_UnhandledException;</div><div class="line"></div><div class="line">            <span class="comment">// Show graphics profiling information while debugging.</span></div><div class="line">            <span class="keyword">if</span> (System.Diagnostics.Debugger.IsAttached)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// Display the current frame rate counters.</span></div><div class="line">                Application.Current.Host.Settings.EnableFrameRateCounter = <span class="literal">true</span>;</div><div class="line"></div><div class="line">                <span class="comment">// Show the areas of the app that are being redrawn in each frame.</span></div><div class="line">                <span class="comment">//Application.Current.Host.Settings.EnableRedrawRegions = true;</span></div><div class="line"></div><div class="line">                <span class="comment">// Enable non-production analysis visualization mode, </span></div><div class="line">                <span class="comment">// which shows areas of a page that are being GPU accelerated with a colored overlay.</span></div><div class="line">                <span class="comment">//Application.Current.Host.Settings.EnableCacheVisualization = true;</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// Standard Silverlight initialization</span></div><div class="line">            InitializeComponent();</div><div class="line"></div><div class="line">            <span class="comment">// Phone-specific initialization</span></div><div class="line">            InitializePhoneApplication();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is launching (eg, from Start)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is reactivated</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Launching</span>(<span class="params"><span class="keyword">object</span> sender, LaunchingEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is activated (brought to foreground)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is first launched</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Activated</span>(<span class="params"><span class="keyword">object</span> sender, ActivatedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is deactivated (sent to background)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is closing</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Deactivated</span>(<span class="params"><span class="keyword">object</span> sender, DeactivatedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is closing (eg, user hit Back)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is deactivated</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Closing</span>(<span class="params"><span class="keyword">object</span> sender, ClosingEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute if a navigation fails</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">RootFrame_NavigationFailed</span>(<span class="params"><span class="keyword">object</span> sender, NavigationFailedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (System.Diagnostics.Debugger.IsAttached)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// A navigation has failed; break into the debugger</span></div><div class="line">                System.Diagnostics.Debugger.Break();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute on Unhandled Exceptions</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_UnhandledException</span>(<span class="params"><span class="keyword">object</span> sender, ApplicationUnhandledExceptionEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (System.Diagnostics.Debugger.IsAttached)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// An unhandled exception has occurred; break into the debugger</span></div><div class="line">                System.Diagnostics.Debugger.Break();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">#<span class="meta-keyword">region</span> Phone application initialization</span></div><div class="line"></div><div class="line">        <span class="comment">// Avoid double-initialization</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">bool</span> phoneApplicationInitialized = <span class="literal">false</span>;</div><div class="line"></div><div class="line">        <span class="comment">// Do not add any additional code to this method</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">InitializePhoneApplication</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (phoneApplicationInitialized)</div><div class="line">                <span class="keyword">return</span>;</div><div class="line"></div><div class="line">            <span class="comment">// Create the frame but don't set it as RootVisual yet; this allows the splash</span></div><div class="line">            <span class="comment">// screen to remain active until the application is ready to render.</span></div><div class="line">            RootFrame = <span class="keyword">new</span> PhoneApplicationFrame();</div><div class="line">            RootFrame.Navigated += CompleteInitializePhoneApplication;</div><div class="line"></div><div class="line">            <span class="comment">// Handle navigation failures</span></div><div class="line">            RootFrame.NavigationFailed += RootFrame_NavigationFailed;</div><div class="line"></div><div class="line">            <span class="comment">// Ensure we don't initialize again</span></div><div class="line">            phoneApplicationInitialized = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Do not add any additional code to this method</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CompleteInitializePhoneApplication</span>(<span class="params"><span class="keyword">object</span> sender, NavigationEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">// Set the root visual to allow the application to render</span></div><div class="line">            <span class="keyword">if</span> (RootVisual != RootFrame)</div><div class="line">                RootVisual = RootFrame;</div><div class="line"></div><div class="line">            <span class="comment">// Remove this handler since it is no longer needed</span></div><div class="line">            RootFrame.Navigated -= CompleteInitializePhoneApplication;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>页面布局</p>
+<p>MainPage.xaml</p>
+<phone:phoneapplicationpage x:class="HelloPhone.MainPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:ignorable="d" d:designwidth="480" d:designheight="768" fontfamily="{StaticResource PhoneFontFamilyNormal}" fontsize="{StaticResource PhoneFontSizeNormal}" foreground="{StaticResource PhoneForegroundBrush}" supportedorientations="Portrait" orientation="Portrait" shell:systemtray.isvisible="True">
+
+<pre><code><span class="comment">&lt;!--LayoutRoot is the root grid where all page content is placed--&gt;</span>
+<span class="tag">&lt;<span class="title">Grid</span> <span class="attribute">x:Name</span>=<span class="value">"LayoutRoot"</span> <span class="attribute">Background</span>=<span class="value">"Transparent"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Grid.RowDefinitions</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">RowDefinition</span> <span class="attribute">Height</span>=<span class="value">"Auto"</span>/&gt;</span>
+        <span class="tag">&lt;<span class="title">RowDefinition</span> <span class="attribute">Height</span>=<span class="value">"Auto"</span>/&gt;</span>
+        <span class="tag">&lt;<span class="title">RowDefinition</span> <span class="attribute">Height</span>=<span class="value">"*"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="title">Grid.RowDefinitions</span>&gt;</span>
+
+    <span class="comment">&lt;!--TitlePanel contains the name of the application and page title--&gt;</span>
+    <span class="tag">&lt;<span class="title">StackPanel</span> <span class="attribute">x:Name</span>=<span class="value">"TitlePanel"</span> <span class="attribute">Grid.Row</span>=<span class="value">"0"</span> <span class="attribute">Margin</span>=<span class="value">"12,17,0,28"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">TextBlock</span> <span class="attribute">x:Name</span>=<span class="value">"ApplicationTitle"</span> <span class="attribute">Text</span>=<span class="value">"MY APPLICATION"</span> <span class="attribute">Style</span>=<span class="value">"{StaticResource PhoneTextNormalStyle}"</span>/&gt;</span>
+        <span class="tag">&lt;<span class="title">TextBlock</span> <span class="attribute">x:Name</span>=<span class="value">"PageTitle"</span> <span class="attribute">Text</span>=<span class="value">"page name"</span> <span class="attribute">Margin</span>=<span class="value">"9,-7,0,0"</span> <span class="attribute">Style</span>=<span class="value">"{StaticResource PhoneTextTitle1Style}"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="title">StackPanel</span>&gt;</span>
+
+    <span class="comment">&lt;!--ContentPanel - place additional content here--&gt;</span>
+    <span class="tag">&lt;<span class="title">Grid</span> <span class="attribute">x:Name</span>=<span class="value">"ContentPanel"</span> <span class="attribute">Grid.Row</span>=<span class="value">"1"</span> <span class="attribute">Margin</span>=<span class="value">"12,0,12,0"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">Grid.ColumnDefinitions</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">ColumnDefinition</span> <span class="attribute">Width</span>=<span class="value">"*"</span> /&gt;</span>
+            <span class="tag">&lt;<span class="title">ColumnDefinition</span> <span class="attribute">Width</span>=<span class="value">"Auto"</span>/&gt;</span>
+        <span class="tag">&lt;/<span class="title">Grid.ColumnDefinitions</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">TextBox</span> <span class="attribute">Grid.Column</span>=<span class="value">"0"</span> <span class="attribute">Name</span>=<span class="value">"MessageTextBox"</span> <span class="attribute">FontSize</span>=<span class="value">"{StaticResource PhoneFontSizeExtraLarge}"</span> <span class="attribute">Margin</span>=<span class="value">"20,20,10,20"</span>/&gt;</span>
+        <span class="tag">&lt;<span class="title">Button</span> <span class="attribute">Grid.Column</span>=<span class="value">"1"</span> <span class="attribute">Name</span>=<span class="value">"ClickMeButton"</span> <span class="attribute">Content</span>=<span class="value">"Click Me"</span> <span class="attribute">HorizontalAlignment</span>=<span class="value">"Right"</span> <span class="attribute">Padding</span>=<span class="value">"4"</span> <span class="attribute">Margin</span>=<span class="value">"10,20,20,20"</span> <span class="attribute">Click</span>=<span class="value">"ClickMeButton_Click"</span> /&gt;</span>
+    <span class="tag">&lt;/<span class="title">Grid</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">Grid</span> <span class="attribute">Grid.Row</span>=<span class="value">"2"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">TextBlock</span> <span class="attribute">Name</span>=<span class="value">"BannerTextBlock"</span> <span class="attribute">Style</span>=<span class="value">"{StaticResource PhoneTextExtraLargeStyle}"</span> 
+           <span class="attribute">Foreground</span>=<span class="value">"#FFFF9A00"</span> <span class="attribute">HorizontalAlignment</span>=<span class="value">"Stretch"</span>
+           <span class="attribute">TextWrapping</span>=<span class="value">"Wrap"</span> <span class="attribute">TextAlignment</span>=<span class="value">"Center"</span> <span class="attribute">FontWeight</span>=<span class="value">"Bold"</span> /&gt;</span>
+    <span class="tag">&lt;/<span class="title">Grid</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">Grid</span>&gt;</span>
+
+<span class="comment">&lt;!--Sample code showing usage of ApplicationBar--&gt;</span>
+<span class="comment">&lt;!--&lt;phone:PhoneApplicationPage.ApplicationBar&gt;
+    &lt;shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"&gt;
+        &lt;shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/&gt;
+        &lt;shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/&gt;
+        &lt;shell:ApplicationBar.MenuItems&gt;
+            &lt;shell:ApplicationBarMenuItem Text="MenuItem 1"/&gt;
+            &lt;shell:ApplicationBarMenuItem Text="MenuItem 2"/&gt;
+        &lt;/shell:ApplicationBar.MenuItems&gt;
+    &lt;/shell:ApplicationBar&gt;
+&lt;/phone:PhoneApplicationPage.ApplicationBar&gt;--&gt;</span>
+</code></pre><p></p></phone:phoneapplicationpage><p></p>
+<p>后台代码</p>
+<p>MainPage.xaml.cs</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// Microsoft Developer &amp; Platform Evangelism</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// Copyright (c) Microsoft Corporation. All rights reserved.</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, </span></div><div class="line"><span class="comment">// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES </span></div><div class="line"><span class="comment">// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// The example companies, organizations, products, domain names,</span></div><div class="line"><span class="comment">// e-mail addresses, logos, people, places, and events depicted</span></div><div class="line"><span class="comment">// herein are fictitious.  No association with any real company,</span></div><div class="line"><span class="comment">// organization, product, domain name, email address, logo, person,</span></div><div class="line"><span class="comment">// places, or events is intended or should be inferred.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> System.Linq;</div><div class="line"><span class="keyword">using</span> System.Net;</div><div class="line"><span class="keyword">using</span> System.Windows;</div><div class="line"><span class="keyword">using</span> System.Windows.Controls;</div><div class="line"><span class="keyword">using</span> System.Windows.Documents;</div><div class="line"><span class="keyword">using</span> System.Windows.Input;</div><div class="line"><span class="keyword">using</span> System.Windows.Media;</div><div class="line"><span class="keyword">using</span> System.Windows.Media.Animation;</div><div class="line"><span class="keyword">using</span> System.Windows.Shapes;</div><div class="line"><span class="keyword">using</span> Microsoft.Phone.Controls;</div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">HelloPhone</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainPage</span> : <span class="title">PhoneApplicationPage</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// Constructor</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainPage</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line">            InitializeComponent();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ClickMeButton_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            BannerTextBlock.Text = MessageTextBox.Text;</div><div class="line">            MessageTextBox.Text = String.Empty;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Properties\AppManifest.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Deployment</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/client/2007/deployment"</span></span></div><div class="line">        <span class="attr">xmlns:x</span>=<span class="string">"http://schemas.microsoft.com/winfx/2006/xaml"</span></div><div class="line">&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">Deployment.Parts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Deployment.Parts</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Deployment</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Properties\AssemblyInfo.cs<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">// <span class="comment">----------------------------------------------------------------------------------</span></div><div class="line">// Microsoft Developer &amp; Platform Evangelism</div><div class="line">// </div><div class="line">// Copyright (c) Microsoft Corporation. All rights reserved.</div><div class="line">// </div><div class="line">// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, </div><div class="line">// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES </div><div class="line">// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</div><div class="line">// <span class="comment">----------------------------------------------------------------------------------</span></div><div class="line">// The example companies, organizations, products, domain names,</div><div class="line">// e-mail addresses, logos, people, places, and events depicted</div><div class="line">// herein are fictitious.  No association with any real company,</div><div class="line">// organization, product, domain name, email address, logo, person,</div><div class="line">// places, or events is intended or should be inferred.</div><div class="line">// <span class="comment">----------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line">using System.Reflection;</div><div class="line">using System.Runtime.CompilerServices;</div><div class="line">using System.Runtime.InteropServices;</div><div class="line"></div><div class="line">// General Information about an assembly is controlled through the following </div><div class="line">// <span class="keyword">set</span> <span class="keyword">of</span> attributes. <span class="keyword">Change</span> these <span class="keyword">attribute</span> <span class="keyword">values</span> <span class="keyword">to</span> <span class="keyword">modify</span> the information</div><div class="line">// associated <span class="keyword">with</span> an assembly.</div><div class="line">[<span class="keyword">assembly</span>: AssemblyTitle(<span class="string">"HelloPhone"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyDescription(<span class="string">""</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyConfiguration(<span class="string">""</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyCompany(<span class="string">"Microsoft"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyProduct(<span class="string">"HelloPhone"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyCopyright(<span class="string">"Copyright © Microsoft 2010"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyTrademark(<span class="string">""</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyCulture(<span class="string">""</span>)]</div><div class="line"></div><div class="line">// Setting ComVisible <span class="keyword">to</span> <span class="literal">false</span> makes the types <span class="keyword">in</span> this <span class="keyword">assembly</span> <span class="keyword">not</span> <span class="keyword">visible</span> </div><div class="line">// <span class="keyword">to</span> COM components.  <span class="keyword">If</span> you need <span class="keyword">to</span> <span class="keyword">access</span> a <span class="keyword">type</span> <span class="keyword">in</span> this <span class="keyword">assembly</span> <span class="keyword">from</span> </div><div class="line">// COM, <span class="keyword">set</span> the ComVisible <span class="keyword">attribute</span> <span class="keyword">to</span> <span class="literal">true</span> <span class="keyword">on</span> that type.</div><div class="line">[<span class="keyword">assembly</span>: ComVisible(<span class="literal">false</span>)]</div><div class="line"></div><div class="line">// The <span class="keyword">following</span> GUID <span class="keyword">is</span> <span class="keyword">for</span> the <span class="keyword">ID</span> <span class="keyword">of</span> the typelib <span class="keyword">if</span> this <span class="keyword">project</span> <span class="keyword">is</span> exposed <span class="keyword">to</span> COM</div><div class="line">[<span class="keyword">assembly</span>: Guid(<span class="string">"a81cc8df-2751-450a-8406-dac02f97bbb5"</span>)]</div><div class="line"></div><div class="line">// <span class="keyword">Version</span> information <span class="keyword">for</span> an <span class="keyword">assembly</span> consists <span class="keyword">of</span> the <span class="keyword">following</span> four <span class="keyword">values</span>:</div><div class="line">//</div><div class="line">//      Major <span class="keyword">Version</span></div><div class="line">//      Minor <span class="keyword">Version</span> </div><div class="line">//      <span class="keyword">Build</span> <span class="built_in">Number</span></div><div class="line">//      Revision</div><div class="line">//</div><div class="line">// You can specify all the <span class="keyword">values</span> <span class="keyword">or</span> you can <span class="keyword">default</span> the Revision <span class="keyword">and</span> <span class="keyword">Build</span> Numbers </div><div class="line">// <span class="keyword">by</span> <span class="keyword">using</span> the <span class="string">'*'</span> <span class="keyword">as</span> shown below:</div><div class="line">[<span class="keyword">assembly</span>: AssemblyVersion(<span class="string">"1.0.0.0"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyFileVersion(<span class="string">"1.0.0.0"</span>)]</div></pre></td></tr></table></figure></p>
+<p>Properties\WMAppManifest.xml</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">Deployment</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/windowsphone/2009/deployment"</span> <span class="attr">AppPlatformVersion</span>=<span class="string">"7.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">App</span> <span class="attr">xmlns</span>=<span class="string">""</span> <span class="attr">ProductID</span>=<span class="string">"</span></span><span class="template-variable">&#123;67b136af-08e1-473d-8d02-c878debcb8c4&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">Title</span>=<span class="string">"HelloPhone"</span> <span class="attr">RuntimeType</span>=<span class="string">"Silverlight"</span> <span class="attr">Version</span>=<span class="string">"1.0.0.0"</span> <span class="attr">Genre</span>=<span class="string">"apps.normal"</span>  <span class="attr">Author</span>=<span class="string">"HelloPhone author"</span> <span class="attr">Description</span>=<span class="string">"Sample description"</span> <span class="attr">Publisher</span>=<span class="string">"HelloPhone"</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">IconPath</span> <span class="attr">IsRelative</span>=<span class="string">"true"</span> <span class="attr">IsResource</span>=<span class="string">"false"</span>&gt;</span>ApplicationIcon.png<span class="tag">&lt;/<span class="name">IconPath</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Capabilities</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_GAMERSERVICES"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_IDENTITY_DEVICE"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_IDENTITY_USER"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_LOCATION"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_MEDIALIB"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_MICROPHONE"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_NETWORKING"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_PHONEDIALER"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_PUSH_NOTIFICATION"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_SENSORS"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_WEBBROWSERCOMPONENT"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Capabilities</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Tasks</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">DefaultTask</span>  <span class="attr">Name</span> =<span class="string">"_default"</span> <span class="attr">NavigationPage</span>=<span class="string">"MainPage.xaml"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Tasks</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Tokens</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">PrimaryToken</span> <span class="attr">TokenID</span>=<span class="string">"HelloPhoneToken"</span> <span class="attr">TaskName</span>=<span class="string">"_default"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">TemplateType5</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">BackgroundImageURI</span> <span class="attr">IsRelative</span>=<span class="string">"true"</span> <span class="attr">IsResource</span>=<span class="string">"false"</span>&gt;</span>Background.png<span class="tag">&lt;/<span class="name">BackgroundImageURI</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Count</span>&gt;</span>0<span class="tag">&lt;/<span class="name">Count</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Title</span>&gt;</span>HelloPhone<span class="tag">&lt;/<span class="name">Title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">TemplateType5</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">PrimaryToken</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Tokens</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">App</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Deployment</span>&gt;</span></div></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Windows应用开发/" rel="tag">#Windows应用开发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/19/BookReview/" rel="prev">BookReview————《旅行的艺术》</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/28/Thinking-in-Java/" rel="next">Thinking in Java</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/08/20/Windows-Application-Development/"
+                   data-title="Windows Application Development (1)" data-url="http://weirdforce.com/2015/08/20/Windows-Application-Development/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Zack" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Zack</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">a funny and weird place</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/deepforce" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/deepforce" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/deepforce" target="_blank">ZhiHu</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/deepforce" target="_blank">DouBan</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为了完成Windows应用的开发，借本博客进行临时的笔记处理点~"><span class="nav-number">1.</span> <span class="nav-text">为了完成Windows应用的开发，借本博客进行临时的笔记处理点~</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Windows应用(C#)内部文件说明"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.Windows应用(C#)内部文件说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#<!-_more_->"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zack</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"weirdforce"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
