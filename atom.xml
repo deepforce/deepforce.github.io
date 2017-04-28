@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-04-27T18:24:04.000Z</updated>
+  <updated>2017-04-28T07:12:47.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -13,6 +13,1008 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[恢复使用]]></title>
+    <link href="http://weirdforce.com/2017/04/28/resume/"/>
+    <id>http://weirdforce.com/2017/04/28/resume/</id>
+    <published>2017-04-28T07:11:15.000Z</published>
+    <updated>2017-04-28T07:12:47.000Z</updated>
+    <content type="html"><![CDATA[<p>总算重新布置好了博客，最近开始慢慢把这一年学到的东西进行详细的记录。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>总算重新布置好了博客，最近开始慢慢把这一年学到的东西进行详细的记录。</p>
+]]>
+    </summary>
+    
+      <category term="恢复" scheme="http://weirdforce.com/tags/%E6%81%A2%E5%A4%8D/"/>
+    
+      <category term="blog" scheme="http://weirdforce.com/categories/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Exchange Cards]]></title>
+    <link href="http://weirdforce.com/2016/05/19/Exchange-Cards/"/>
+    <id>http://weirdforce.com/2016/05/19/Exchange-Cards/</id>
+    <published>2016-05-19T07:05:30.000Z</published>
+    <updated>2017-04-28T07:10:59.000Z</updated>
+    <content type="html"><![CDATA[<p>题目讲述了一个等价交换卡片的故事，其实是为了统计一个价值为n的卡片有多少种组合方式。<br><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2734" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>题目思路：</p>
+<blockquote>
+<p>根据现有卡片对能够构成价值n的卡片，进行DFS，找出所有能构成的方式，统计。</p>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">struct</span> card
+{
+<span class="keyword">int</span> val;
+<span class="keyword">int</span> num;
+}a[<span class="number">11</span>];
+<span class="keyword">int</span> m;
+<span class="function"><span class="keyword">int</span> <span class="title">comp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span>*p1, <span class="keyword">const</span> <span class="keyword">void</span>*p2)</span>
+</span>{
+<span class="keyword">return</span> (*(card*)p1).val&gt;(*(card*)p2).val?-<span class="number">1</span>:<span class="number">1</span>;
+}
+<span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> sum,<span class="keyword">int</span> start ,<span class="keyword">int</span> &amp;cnt)</span>
+</span>{
+      <span class="keyword">if</span>(sum==<span class="number">0</span>)
+      {
+          cnt++;
+      }
+      <span class="keyword">else</span>
+      {
+          <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;m;i++)
+          {
+              <span class="keyword">if</span>(a[i].val&lt;=sum &amp;&amp; a[i].num )
+              {
+                  sum-=a[i].val;
+                  a[i].num--;
+                  DFS(sum,i,cnt);
+                  a[i].num++;
+                  sum+=a[i].val;
+              }
+          }
+      }
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+<span class="keyword">int</span> n;
+<span class="keyword">int</span> cnt;
+<span class="keyword">int</span> u=<span class="number">0</span>;
+<span class="keyword">int</span> sum;
+<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)
+{
+    <span class="keyword">if</span>(u)
+            <span class="built_in">cout</span>&lt;&lt;endl;
+    <span class="keyword">else</span>
+            u++;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)
+    {
+      <span class="built_in">cin</span>&gt;&gt;a[i].val&gt;&gt;a[i].num;
+    }
+
+    qsort(a,m,<span class="keyword">sizeof</span>(a[<span class="number">0</span>]),comp);
+    cnt=<span class="number">0</span>;
+    sum=n;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)
+    {
+      <span class="keyword">if</span>(a[i].val&lt;=n)
+      {
+          sum-=a[i].val;
+          a[i].num--;
+          DFS(sum,i,cnt);
+          a[i].num++;
+          sum+=a[i].val;
+      }
+    }
+    <span class="built_in">cout</span>&lt;&lt;cnt&lt;&lt;endl;
+}
+<span class="keyword">return</span> <span class="number">0</span>;
+
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>题目讲述了一个等价交换卡片的故事，其实是为了统计一个价值为n的卡片有多少种组合方式。<br><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2734">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="ZOJ" scheme="http://weirdforce.com/tags/ZOJ/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Eight]]></title>
+    <link href="http://weirdforce.com/2016/05/19/Eight/"/>
+    <id>http://weirdforce.com/2016/05/19/Eight/</id>
+    <published>2016-05-19T06:57:35.000Z</published>
+    <updated>2017-04-28T07:03:07.000Z</updated>
+    <content type="html"><![CDATA[<p>这题题意很好理解，就是给定模版，然后每次输入一个例子，计算出转换成模版所需的路径。<br><strong> 题目链接: <a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1217" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a></p>
+<p>题目思路如下：</p>
+<blockquote>
+<ol>
+<li>先将模版确定，并用DFS将所有可能移动到模版的情况的路径都统计出来。</li>
+<li>输入给出的例子，并从所有的情况中找出对应的路径输出</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;M;
+<span class="built_in">queue</span>&lt;<span class="built_in">string</span>&gt; q;
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+   <span class="built_in">string</span> gold=<span class="string">"12345678x"</span>;
+   <span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;::iterator my_it;
+   <span class="keyword">bool</span> flag[<span class="number">8</span>];
+   <span class="keyword">int</span> n;
+   <span class="keyword">int</span> a[<span class="number">4</span>]={<span class="number">1</span>,-<span class="number">1</span>,<span class="number">3</span>,-<span class="number">3</span>};
+   q.push(gold);
+   M[gold]=gold;
+   <span class="keyword">while</span>(!q.empty())
+   {
+        n=<span class="number">0</span>;
+        <span class="built_in">string</span> s=q.front();
+        q.pop();
+        <span class="keyword">while</span>(s[n]!=<span class="string">'x'</span>)
+        {
+            n++;
+        }
+        <span class="built_in">string</span> ts;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)
+        {
+           ts=s;
+           <span class="keyword">if</span>(n%<span class="number">3</span>+a[i]&gt;<span class="number">2</span>||n%<span class="number">3</span>+a[i]&lt;<span class="number">0</span>) <span class="keyword">continue</span>;
+           <span class="keyword">int</span> tx=n+a[i];
+           <span class="keyword">char</span> tc;
+           tc=ts[tx];
+           ts[tx]=ts[n];
+           ts[n]=tc;
+           my_it = M.find(ts);
+           <span class="keyword">if</span>(my_it==M.end())
+           {
+              q.push(ts);
+              M[ts]=s;
+           }
+        }
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">4</span>;i++)
+        {
+            ts=s;
+            <span class="keyword">if</span>(n+a[i]&gt;=<span class="number">8</span>||n+a[i]&lt;<span class="number">0</span>) <span class="keyword">continue</span>;
+            <span class="keyword">int</span> tx=n+a[i];
+            <span class="keyword">char</span> tc;
+            tc=ts[tx];
+            ts[tx]=ts[n];
+            ts[n]=tc;
+            my_it = M.find(ts);
+            <span class="keyword">if</span>(my_it==M.end())
+            {
+                   q.push(ts);
+                   M[ts]=s;
+            }
+         }
+    }
+    <span class="built_in">string</span> is;
+    <span class="keyword">while</span>(getline(<span class="built_in">cin</span>,is))
+    {
+        <span class="keyword">int</span> begin = <span class="number">0</span>;
+
+        begin = is.find(<span class="string">" "</span>,begin);  <span class="comment">//查找空格在str中第一次出现的位置</span>
+
+        <span class="keyword">while</span>(begin != -<span class="number">1</span>)  <span class="comment">//表示字符串中存在空格</span>
+        {
+        is.replace(begin, <span class="number">1</span>, <span class="string">""</span>);  <span class="comment">// 用空串替换str中从begin开始的1个字符</span>
+        begin = is.find(<span class="string">" "</span>,begin);  <span class="comment">//查找空格在替换后的str中第一次出现的位置</span>
+        }
+        my_it = M.find(is);
+        <span class="keyword">if</span>(my_it==M.end())
+        {
+           <span class="built_in">cout</span>&lt;&lt;<span class="string">"unsolvable"</span>&lt;&lt;endl;
+           <span class="keyword">continue</span>;
+        }
+        <span class="built_in">string</span> str1,str2;
+        <span class="keyword">int</span> w;
+        str2=is;
+        <span class="keyword">while</span>(<span class="number">1</span>)
+        {
+                str1=M[str2];
+                <span class="keyword">int</span> ix=<span class="number">0</span>,iy=<span class="number">0</span>;
+                <span class="keyword">while</span>(str1[ix]!=<span class="string">'x'</span>)
+                {
+                   ix++;
+                }
+                <span class="keyword">while</span>(str2[iy]!=<span class="string">'x'</span>)
+                {
+                   iy++;
+                }
+                <span class="keyword">switch</span>(ix-iy)
+                {
+                       <span class="keyword">case</span> <span class="number">3</span>:<span class="built_in">cout</span>&lt;&lt;<span class="string">"d"</span>;<span class="keyword">break</span>;
+                       <span class="keyword">case</span> <span class="number">1</span>:<span class="built_in">cout</span>&lt;&lt;<span class="string">"r"</span>;<span class="keyword">break</span>;
+                       <span class="keyword">case</span> -<span class="number">1</span>:<span class="built_in">cout</span>&lt;&lt;<span class="string">"l"</span>;<span class="keyword">break</span>;
+                       <span class="keyword">case</span> -<span class="number">3</span>:<span class="built_in">cout</span>&lt;&lt;<span class="string">"u"</span>;<span class="keyword">break</span>;
+                }
+                str2=str1;
+                <span class="keyword">if</span>(str1==gold)
+                       <span class="keyword">break</span>;
+        }
+        <span class="built_in">cout</span>&lt;&lt;endl;
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>这题题意很好理解，就是给定模版，然后每次输入一个例子，计算出转换成模版所需的路径。<br><strong> 题目链接: <a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1217">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="ZOJ" scheme="http://weirdforce.com/tags/ZOJ/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Additive equations]]></title>
+    <link href="http://weirdforce.com/2016/05/19/Additive-equations/"/>
+    <id>http://weirdforce.com/2016/05/19/Additive-equations/</id>
+    <published>2016-05-19T06:50:24.000Z</published>
+    <updated>2017-04-28T07:04:40.000Z</updated>
+    <content type="html"><![CDATA[<p><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1204" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>这题题意为从一个数字序列中找出所有可能出现的等式。</p>
+<p>题目思路如下：</p>
+<blockquote>
+<ol>
+<li>如果单纯地采用枚举法一个个找出等式，绝对会超时。</li>
+<li>故选择DFS，因为每个数字都有属于自己的等式，故借此对每个数字进行拆分，并记录所有情况，得到结果。</li>
+</ol>
+</blockquote>
+<p>代码如下:</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">int</span> a[<span class="number">35</span>];
+<span class="keyword">int</span> n;
+<span class="keyword">bool</span> visit[<span class="number">35</span>],flag;
+
+<span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> sum,<span class="keyword">int</span> len,<span class="keyword">int</span> start)</span>
+</span>{
+    <span class="keyword">if</span>(len==<span class="number">0</span>)
+    {
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i&lt;n &amp;&amp; sum &gt;= a[i];i++)
+        {
+               <span class="keyword">if</span>(sum == a[i])
+               {
+                   flag = <span class="literal">true</span>;
+                   <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;=i; j++)
+                   {
+                       <span class="keyword">if</span>(visit[j])
+                       {
+                               <span class="keyword">if</span>(sum == a[j])
+                                   <span class="built_in">printf</span>(<span class="string">"%d=%d\n"</span>,a[j],a[i]);
+                               <span class="keyword">else</span>
+                                   <span class="built_in">printf</span>(<span class="string">"%d+"</span>,a[j]);
+                               sum-=a[j];
+                       }
+                   }    
+               }
+             }
+     }
+     <span class="keyword">else</span>
+     {
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;n;i++)
+        {
+            <span class="keyword">if</span>(sum+a[i] &lt;= a[n-<span class="number">1</span>])
+            {   
+                len--;
+                visit[i]=<span class="literal">true</span>;
+                sum+=a[i];
+                DFS(sum,len,i+<span class="number">1</span>);
+                sum-=a[i];
+                visit[i]=<span class="literal">false</span>;
+                len++;
+            }
+
+        }
+
+     }
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+<span class="keyword">int</span> t;
+<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);
+<span class="keyword">while</span>(t--)
+{
+<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);
+<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)
+        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);
+sort(a,a+n);
+<span class="built_in">memset</span>(visit,<span class="literal">false</span>,<span class="keyword">sizeof</span>(visit));                    
+flag = <span class="literal">false</span>;
+<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;n;i++)
+        DFS(<span class="number">0</span>,i,<span class="number">0</span>);
+<span class="keyword">if</span>(!flag)
+        <span class="built_in">printf</span>(<span class="string">"Can't find any equations.\n\n"</span>);
+<span class="keyword">else</span>
+        <span class="built_in">printf</span>(<span class="string">"\n"</span>);
+}
+
+<span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1204">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="ZOJ" scheme="http://weirdforce.com/tags/ZOJ/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2016深圳杯笔记]]></title>
+    <link href="http://weirdforce.com/2016/04/18/MCM-2016/"/>
+    <id>http://weirdforce.com/2016/04/18/MCM-2016/</id>
+    <published>2016-04-18T06:47:04.000Z</published>
+    <updated>2017-04-28T06:49:15.000Z</updated>
+    <content type="html"><![CDATA[<p>A题思路：<br>稳定性－&gt;单位面积烟尘排放量<br><a id="more"></a><br>影响稳定性的因素：</p>
+<blockquote>
+<p>布袋寿命<br>炉压差<br>布袋直径<br>喷嘴与布袋口中心偏差？<br>清洗频繁，喷吹压力过高<br>输灰系统<br>布袋底部强度</p>
+</blockquote>
+<p>除尘效果：</p>
+<blockquote>
+<p>烟气温度<br>烟道和本体漏风漏水</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>A题思路：<br>稳定性－&gt;单位面积烟尘排放量<br>]]>
+    
+    </summary>
+    
+      <category term="MCM" scheme="http://weirdforce.com/tags/MCM/"/>
+    
+      <category term="2016深圳杯" scheme="http://weirdforce.com/tags/2016%E6%B7%B1%E5%9C%B3%E6%9D%AF/"/>
+    
+      <category term="MCM" scheme="http://weirdforce.com/categories/MCM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2015深圳杯数学建模A题笔记(2)]]></title>
+    <link href="http://weirdforce.com/2016/04/09/MCM-note-2/"/>
+    <id>http://weirdforce.com/2016/04/09/MCM-note-2/</id>
+    <published>2016-04-09T06:39:05.000Z</published>
+    <updated>2017-04-28T06:46:53.000Z</updated>
+    <content type="html"><![CDATA[<p>采用基于分辨率的孤立点算法（RB算法）<br>RB算法：</p>
+<blockquote>
+<p><strong>优点：</strong> 适用于海量的数据库，无需引入参数<br><strong>缺点：</strong> RB算法仅从数据集全局出发寻找孤立点，会导致孤立点的寻找过程中忽略了数据点所在的类的密集程度对孤立点的影响。<br><a id="more"></a><br>所以，在RB算法基础上，提出了密集度加权的分辨率孤立点挖掘算法（WRB算法）。<br>主要是通过计算每个孤立点相距最近的类的稠密度测度作为分辨率的权重，从全局和局部出发，综合考虑数据点周围的点的个数以及每个孤立点与距离本身最近的类的密集度对比计算每个数据点的孤立程度。</p>
+</blockquote>
+<p>就病人取药时间，将病人的取药时间看作一个个点，将点的个数及密集程度赋值，将一个病人的取药时间量化成一个值，使用一维格子分布密集度算法对其密集度进行度量，从而排序。最后结合实际，进一步剔除混合度密度算法。</p>
+<p>最后,代入模型，RB算法以及WRB算法的交集即为可能用高额处方骗保的病人，而利用混合密度算法得出的孤立程度较大的点，即为可能存在骗保的病人。</p>
+<p><strong>数据预处理步骤：</strong></p>
+<blockquote>
+<ol>
+<li><strong>数据清洗：</strong>对于数据缺失项，根据其余各表补充，若无法补充关键则删除该数据。去除前后属性明显矛盾可能是由于记录错误而引起的数据项，如药品单价与费用为负值。</li>
+<li><strong>目标数据提取：</strong>以同一账单号为条件，对数据进行条件加和，得到一个个对应一定费用的账单。此外对于每个病人的取药次数与分布也进行了提取。</li>
+<li><strong>数据规范化：</strong> 由于给出的费用范围太大，造成计算复杂度大大提高，故将数据属性数据按比例缩放，使之落入一个小的特定区间。</li>
+</ol>
+</blockquote>
+<p><strong>假设：</strong></p>
+<blockquote>
+<ol>
+<li>不考虑科室只有一个人得某种病，导致此数据与儿科中其他数据明显不同，默认为每种病都有几个可用的数据。</li>
+<li>不考虑某病人分开多次配药，默认每个病人就配一次或者极少次。即一个处方对应一个账单号。</li>
+<li>只考虑费用的总和，某种费用有问题可视为总费用有问题。</li>
+<li>不考虑由于特殊情况出现需要过多取药的情况。</li>
+</ol>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>采用基于分辨率的孤立点算法（RB算法）<br>RB算法：</p>
+<blockquote>
+<p><strong>优点：</strong> 适用于海量的数据库，无需引入参数<br><strong>缺点：</strong> RB算法仅从数据集全局出发寻找孤立点，会导致孤立点的寻找过程中忽略了数据点所在的类的密集程度对孤立点的影响。<br>]]>
+    
+    </summary>
+    
+      <category term="MCM" scheme="http://weirdforce.com/tags/MCM/"/>
+    
+      <category term="2015深圳杯" scheme="http://weirdforce.com/tags/2015%E6%B7%B1%E5%9C%B3%E6%9D%AF/"/>
+    
+      <category term="A题" scheme="http://weirdforce.com/tags/A%E9%A2%98/"/>
+    
+      <category term="MCM" scheme="http://weirdforce.com/categories/MCM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Machine-Learning]]></title>
+    <link href="http://weirdforce.com/2016/04/02/Machine-Learning/"/>
+    <id>http://weirdforce.com/2016/04/02/Machine-Learning/</id>
+    <published>2016-04-02T04:55:23.000Z</published>
+    <updated>2017-04-28T06:38:24.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Multivariate_Linear_Regression">Multivariate Linear Regression</h2><a id="more"></a>
+<ol>
+<li><p>Multiple Features<br> 区别于单一特征向量，当存在多个特征向量去描述一个函数时，需要利用到多元特征向量去表示。多元特征向量的表示方法如下：<br> <img src="/images/Multiple_Features.png" alt="Alt text"><br> 多元特征向量所表示的函数如下图所示：<br> <img src="/images/Multiple_Function.png" alt="Alt text"><br> 上式中，可以假设存在一个X0＝1来化简式子，得到下图。<br> <img src="/images/Multiple_Function_1.png" alt="Alt text"></p>
+</li>
+<li><p>Gradient Descent for Mutiple Variables<br> 构造出多特征线性规划后，我们可以通过梯度下降法对其进行求解，此时要选择代价函数J，使目标变量的真实值和预测值的距离最小，故选择最小二乘为代价函数。如下图<br> <img src="/images/Cost_Function.png" alt="Alt text"><br> 于是得到梯度下降的迭代公式：<br> <img src="/images/Gradient_descent.png" alt="Alt text"><br> 运算，化简得到：<br> <img src="/images/Gradient_descent_1.png" alt="Alt text">   </p>
+</li>
+<li><p>Feature Scaling<br> 特征缩放：为了使得梯度下降算法在使用的过程中更快收敛，我们在存在多个特征的机器学习的题目中，将各个特征的取值范围缩放到相近的范围，例如:[-1,1]。<br> 通常的，我们有Mean normalization:<br> $$x=\frac{x_i-\mu_i}{max-min}$$<br> 通过特征缩放能使我们的梯度下降算法收敛得更快。</p>
+</li>
+<li><p>Learning Rate<br> 学习率a:我们可以通过对（代价函数最小值——梯度下降迭代次数）的函数图像进行分析，判断梯度下降算法的学习率a是否准确。<br> (1) 若是这个图像是递增的，说明这个学习率过大。<br> (2) 若是这个图像是递减且收敛缓慢，说明这个学习率过小。<br> (3) 若是这个图像是递减且很快收敛，说明这个学习率合适。<br> (P.S. 一般对学习率的选取可以选择3倍一取或10倍一取。)</p>
+</li>
+<li><p>Features and Polynomial Regression<br> 在使用多元线性回归的时候，我们应该选取比较合适的模型对数据进行拟合，例如：一元二次函数或一元三次函数。如下图所示：<br> <img src="/images/Polynomial_regression.png" alt="Alt text"></p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Multivariate_Linear_Regression">Multivariate Linear Regression</h2>]]>
+    
+    </summary>
+    
+      <category term="Machine-Learning" scheme="http://weirdforce.com/tags/Machine-Learning/"/>
+    
+      <category term="机器学习" scheme="http://weirdforce.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Stanford" scheme="http://weirdforce.com/tags/Stanford/"/>
+    
+      <category term="Machine-Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2015深圳杯数学建模A题笔记(1)]]></title>
+    <link href="http://weirdforce.com/2016/03/31/MCM-note-1/"/>
+    <id>http://weirdforce.com/2016/03/31/MCM-note-1/</id>
+    <published>2016-03-31T04:43:49.000Z</published>
+    <updated>2017-04-28T04:51:32.000Z</updated>
+    <content type="html"><![CDATA[<p><strong> 辅助学习（有监督）的方法 </strong>：统计回归，神经网络。<br><strong> 非辅助学习（无监督）方法 </strong>：<br><strong> 聚类分析 </strong>：在经典的情况下将不同指标视作等同的，忽略了指标间权重的差异，影响了分类的精度。<br><a id="more"></a><br><strong> 步骤：</strong></p>
+<blockquote>
+<ol>
+<li>引入基于指标权重的欧氏距离，刻画数据之间的相似程度</li>
+<li>通过聚类算法将数据按照相似程度不同分成多类，分类中出现的孤立点即为意思欺诈点。 权重指标评价函数CFuzziness(w)<br>该函数刻画随着权重w的改变，分类的模糊程度的变化。</li>
+</ol>
+</blockquote>
+<p><strong> 粒子群优化（MPSO）算法： </strong><br>极小化属性权重评价函数，得到每个指标的权重赋值。将得到的权重应用于聚类算法。</p>
+<p><strong> 建立模型过程：</strong></p>
+<blockquote>
+<ol>
+<li>筛选与处理数据，剔除显著无关的指标与无效的交易记录；</li>
+<li>构造属性权重评价函数CFuzziness(w),用以描述聚类效果的不确定性，通过粒子群优化算法求得属性权重评价函数取得最小值得最优解w作为各项属性的权重。</li>
+<li>构造改进的欧氏距离函数d，用改进的欧式距离作为聚类函数的输入；</li>
+<li>应用聚类分析算法，无监督给出样本数据分类，以区分正常医保消费与欺诈记录；</li>
+</ol>
+</blockquote>
+<p><strong> 冗余项忽略： </strong><br>排除身高、性别、所在省份等信息对结果影响</p>
+<p><strong> 指标确定： </strong></p>
+<blockquote>
+<ol>
+<li>欺诈行为的主体一定是有医保的患者。故筛选掉无医保患者的取药记录。</li>
+<li>两种欺诈类型表现为单张账单价格过高以及拿药次数过于频繁。故将单张账单总价格和单个患者拿药次数应该分别作为判断是否为欺诈的第一项和第二项的指标。</li>
+<li>生活经验：部分科室、或者个别医生可能存在不合理开医嘱作为患者取药凭证的现象。故把执行科室以及开嘱医生ID作为影响判断是否欺诈的第三项和第四项指标。</li>
+<li>考虑有一种欺诈类型是刷他人的医保卡，可能存在部分人经常将自己的医保卡外借的情况，所以将患者ID作为影响判断是否为欺诈的结果的第五项指标。</li>
+</ol>
+</blockquote>
+<p><strong> 操作过程：</strong></p>
+<blockquote>
+<ol>
+<li>从表格2.1中，导入患者ID和医保手册号－－根据是否有医保手册判断患者是否有医保，筛掉表格2.2中无医保患者的购药记录。</li>
+<li>为了得到单张账单的总价以及患者的购药次数，从表格2.2中导入账单号、价格、患者ID＝＝将账单号相同的记录合并，进而计算出单张单据的总价；根据患者ID来统计每位患者的购药次数。</li>
+<li>考虑到影响判断是否欺诈的其他因素，将表格2.2执行科室和开嘱医生ID导入Matlab中。</li>
+</ol>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong> 辅助学习（有监督）的方法 </strong>：统计回归，神经网络。<br><strong> 非辅助学习（无监督）方法 </strong>：<br><strong> 聚类分析 </strong>：在经典的情况下将不同指标视作等同的，忽略了指标间权重的差异，影响了分类的精度。<br>]]>
+    
+    </summary>
+    
+      <category term="MCM" scheme="http://weirdforce.com/tags/MCM/"/>
+    
+      <category term="2015深圳杯" scheme="http://weirdforce.com/tags/2015%E6%B7%B1%E5%9C%B3%E6%9D%AF/"/>
+    
+      <category term="A题" scheme="http://weirdforce.com/tags/A%E9%A2%98/"/>
+    
+      <category term="MCM" scheme="http://weirdforce.com/categories/MCM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Quicksum]]></title>
+    <link href="http://weirdforce.com/2016/03/12/Quicksum/"/>
+    <id>http://weirdforce.com/2016/03/12/Quicksum/</id>
+    <published>2016-03-12T04:37:33.000Z</published>
+    <updated>2017-04-28T04:41:31.000Z</updated>
+    <content type="html"><![CDATA[<p>这道题十分简单，不过需要注意使用gets函数～</p>
+<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2734" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a></p>
+<p>解题思路：</p>
+<blockquote>
+<ol>
+<li>清楚每个字母的ASCII值，将其值减去64得到1～26。</li>
+<li>注意空格占一个位置，所以必须将空格输入。</li>
+<li>空格的值为0，在统计的总数中可以进行排除。</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">char</span> str[<span class="number">256</span>]={<span class="number">0</span>};
+    <span class="keyword">int</span> total,i;
+    <span class="keyword">while</span>(gets(str))
+    {
+        total=<span class="number">0</span>;
+        <span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">'#'</span>)
+                <span class="keyword">break</span>;
+        <span class="keyword">for</span>(i=<span class="number">0</span>;str[i] !=<span class="string">'\0'</span>;i++)
+        {
+                 <span class="keyword">if</span>(str[i] != <span class="string">' '</span>)
+                     total+=(str[i]-<span class="number">64</span>) * (i+<span class="number">1</span>);
+        }
+        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,total);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>这道题十分简单，不过需要注意使用gets函数～</p>
+<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2734">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Palindrom Numbers]]></title>
+    <link href="http://weirdforce.com/2016/03/12/Palindrom-Numbers/"/>
+    <id>http://weirdforce.com/2016/03/12/Palindrom-Numbers/</id>
+    <published>2016-03-12T04:28:58.000Z</published>
+    <updated>2017-04-28T04:36:06.000Z</updated>
+    <content type="html"><![CDATA[<p>这是一道检验回文数的程序（在2～16进制下）～</p>
+<p><strong> 题目链接：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1078" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>思路大致如下：</p>
+<blockquote>
+<ol>
+<li>需要一个字符数组用于记录输入数在某进制下的表示数，然后对其进行头尾回文比较。</li>
+<li>需要一个数组记录输入数在哪些进制下存在回文数或它根本不是回文数。</li>
+<li>用循环去实现对每个输入数在哪些进制下为回文数的判断</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">int</span> n,i,x;
+    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)&amp;&amp;n)
+      {
+        x=<span class="number">0</span>;
+        <span class="keyword">char</span> s[<span class="number">16</span>]={<span class="number">0</span>};
+        <span class="keyword">int</span> b[<span class="number">15</span>]={<span class="number">0</span>};
+        <span class="keyword">int</span> j;
+        <span class="keyword">for</span>(j=<span class="number">2</span>;j&lt;=<span class="number">16</span>;j++)
+        {
+        <span class="keyword">int</span> p=n;
+        i=<span class="number">0</span>;
+        <span class="keyword">while</span>(p)
+        {
+            s[i]=p%j;
+            i++;
+            p/=j;
+        }
+        <span class="keyword">int</span> k;
+        <span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;i/<span class="number">2</span>;k++)
+        {
+                <span class="keyword">if</span>(s[k]!=s[i-k-<span class="number">1</span>])
+                    <span class="keyword">break</span>;
+        }
+        <span class="keyword">if</span>(k&gt;=i/<span class="number">2</span>)
+            b[x++]=j;
+        }
+        <span class="keyword">if</span>(x==<span class="number">0</span>)
+            <span class="built_in">printf</span>(<span class="string">"Number %d is not a palindrom\n"</span>,n);
+        <span class="keyword">else</span>
+        {
+            <span class="built_in">printf</span>(<span class="string">"Number %d is palindrom in basis"</span>,n);
+            <span class="keyword">int</span> m;
+            <span class="keyword">for</span>(m=<span class="number">0</span>;m&lt;x;m++)
+                <span class="built_in">printf</span>(<span class="string">" %d"</span>,b[m]);
+            <span class="built_in">printf</span>(<span class="string">"\n"</span>);
+        }
+}
+<span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是一道检验回文数的程序（在2～16进制下）～</p>
+<p><strong> 题目链接：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1078">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="ZOJ" scheme="http://weirdforce.com/tags/ZOJ/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[I Think I Need a Houseboat]]></title>
+    <link href="http://weirdforce.com/2016/03/12/I-Think-I-Need-a-Houseboat/"/>
+    <id>http://weirdforce.com/2016/03/12/I-Think-I-Need-a-Houseboat/</id>
+    <published>2016-03-12T04:25:33.000Z</published>
+    <updated>2017-04-28T04:27:56.000Z</updated>
+    <content type="html"><![CDATA[<p>刚刚AC了一道题目，又是一道数学题目～<br><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1065" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a></p>
+<p>解题思路如下：</p>
+<blockquote>
+<ol>
+<li>因题意可知每年面积增大50平方英里，形状为半圆，可以直接得到半径的平方。</li>
+<li>输入的坐标到原点的距离平方为 x的平方+y的平方。</li>
+<li>最后将1，2两个数据进行相除就能得到年数。<br>  (Tips: 要注意的是，不足一年按一年计，年数为整数)</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+<span class="keyword">int</span> t,count1;
+<span class="keyword">double</span> x,y;
+<span class="built_in">cin</span>&gt;&gt;t;
+<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)
+{
+    <span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y;
+    count1=<span class="built_in">ceil</span>((x*x+y*y)*<span class="number">3.1419</span>/<span class="number">100</span>);
+    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Property "</span>&lt;&lt;i&lt;&lt;<span class="string">": This property will begin eroding in year     "</span>&lt;&lt;count1&lt;&lt;<span class="string">"."</span>&lt;&lt;endl;
+}
+<span class="built_in">cout</span>&lt;&lt;<span class="string">"END OF OUTPUT."</span>&lt;&lt;endl;
+<span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>刚刚AC了一道题目，又是一道数学题目～<br><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1065">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Financial Management]]></title>
+    <link href="http://weirdforce.com/2016/03/12/Financial-Management/"/>
+    <id>http://weirdforce.com/2016/03/12/Financial-Management/</id>
+    <published>2016-03-12T04:20:28.000Z</published>
+    <updated>2017-04-28T04:24:22.000Z</updated>
+    <content type="html"><![CDATA[<p>前几天AC的一道简单题目～学到了一些东西～</p>
+<p><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1064" target="_blank" rel="external">题目</a> </strong></p>
+<a id="more"></a>
+<p>题目比较简单，思路就是输入十二个月的金额求平均值(保留两位小数，四舍五入)。<br>这题我WA了很多次，原因是：</p>
+<blockquote>
+<p>1.在C语言中double 类型必须用%lf形式输入，而输出可以为%f。<br>2.不用纠结于题目所给的四舍五入。</p>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span> </span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> 
+</span>{ 
+<span class="keyword">double</span> a; 
+<span class="keyword">int</span> i; 
+<span class="keyword">double</span> count1=<span class="number">0</span>; 
+<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">12</span>;i++) 
+{ 
+<span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;a); 
+count1+=a; 
+} 
+<span class="built_in">printf</span>(<span class="string">"$%.2f\n"</span>, count1/<span class="number">12</span>); 
+<span class="keyword">return</span> <span class="number">0</span>; 
+} 
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>前几天AC的一道简单题目～学到了一些东西～</p>
+<p><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1064">题目</a> </strong></p>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Color Me Less]]></title>
+    <link href="http://weirdforce.com/2016/03/12/Color-Me-Less/"/>
+    <id>http://weirdforce.com/2016/03/12/Color-Me-Less/</id>
+    <published>2016-03-12T04:13:35.000Z</published>
+    <updated>2017-04-28T04:19:05.000Z</updated>
+    <content type="html"><![CDATA[<p>又是一道比较简单的题目～</p>
+<p><strong> 题目链接: <a href="http://poj.org/problem?id=1046" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>题目思路如下：</p>
+<blockquote>
+<ol>
+<li>输入16组已知RGB，输出余下输入所对应的映射。</li>
+<li>映射是由距离公式决定的，那么在已知RGB中找出与输入RGB距离最小的RGB为所求RGB。</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+<span class="keyword">int</span> r[<span class="number">17</span>],g[<span class="number">17</span>],b[<span class="number">17</span>];
+<span class="keyword">int</span> s,t,u,num;
+<span class="keyword">int</span> min;
+<span class="keyword">int</span> d;
+<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">15</span>;i++)
+{
+    <span class="built_in">cin</span>&gt;&gt;r[i]&gt;&gt;g[i]&gt;&gt;b[i];
+}
+<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s&gt;&gt;t&gt;&gt;u &amp;&amp; u!=-<span class="number">1</span> &amp;&amp; s!=-<span class="number">1</span> &amp;&amp; t!=-<span class="number">1</span>)
+{
+   min=<span class="number">200000</span>;
+   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">15</span>;i++)
+   {
+           d= (s-r[i])*(s-r[i])+(t-g[i])*(t-g[i])+(u-b[i])*(u-b[i]);
+           <span class="keyword">if</span>(min &gt; d)
+           {
+           min = d;
+           num = i;
+           }
+   }
+   <span class="built_in">cout</span>&lt;&lt;<span class="string">"("</span>&lt;&lt;s&lt;&lt;<span class="string">","</span>&lt;&lt;t&lt;&lt;<span class="string">","</span>&lt;&lt;u&lt;&lt;<span class="string">") maps to ("</span>&lt;&lt;r[num]&lt;&lt;<span class="string">","</span>&lt;&lt;g[num]&lt;&lt;<span class="string">","</span>&lt;&lt;b[num]&lt;&lt;<span class="string">")"</span>&lt;&lt;endl;
+}
+<span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>又是一道比较简单的题目～</p>
+<p><strong> 题目链接: <a href="http://poj.org/problem?id=1046">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="POJ" scheme="http://weirdforce.com/tags/POJ/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Binary Numbers]]></title>
+    <link href="http://weirdforce.com/2016/03/12/Binary-Numbers/"/>
+    <id>http://weirdforce.com/2016/03/12/Binary-Numbers/</id>
+    <published>2016-03-12T04:08:34.000Z</published>
+    <updated>2017-04-28T04:12:20.000Z</updated>
+    <content type="html"><![CDATA[<p>这也是一道比较简单的入门题～是算出输入数二进制表示的1的位置</p>
+<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1390" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>解题思路大致如下:</p>
+<blockquote>
+<ol>
+<li>让输入数对2取余，再让输入数除以2，直到它变为0。</li>
+<li>因为题目正好是求倒序的位置所以直接做第一步不用再进行顺序颠倒的工作。</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+<span class="keyword">int</span> t,n,count1,flag;
+<span class="built_in">cin</span>&gt;&gt;t;
+<span class="keyword">while</span>(t--)
+{
+<span class="built_in">cin</span>&gt;&gt;n;
+flag=<span class="number">1</span>;
+count1=<span class="number">0</span>;
+<span class="keyword">while</span>(n)
+{   
+    <span class="keyword">if</span>(n%<span class="number">2</span>)
+    {    
+        <span class="keyword">if</span>(flag)
+            <span class="built_in">cout</span>&lt;&lt;count1;
+        <span class="keyword">else</span>
+            <span class="built_in">cout</span>&lt;&lt;<span class="string">" "</span>&lt;&lt;count1;
+        flag=<span class="number">0</span>;
+    }  
+    n=n/<span class="number">2</span>;
+    count1++;
+}
+<span class="built_in">cout</span>&lt;&lt;endl;
+}  
+<span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>这也是一道比较简单的入门题～是算出输入数二进制表示的1的位置</p>
+<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1390">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Gridland]]></title>
+    <link href="http://weirdforce.com/2016/03/11/Gridland/"/>
+    <id>http://weirdforce.com/2016/03/11/Gridland/</id>
+    <published>2016-03-11T03:54:18.000Z</published>
+    <updated>2017-04-28T04:02:27.000Z</updated>
+    <content type="html"><![CDATA[<p>今天AC了一道比较有趣的数学题～</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1046" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>这道题目是比较简单的一道题目，具体思路如下：</p>
+<ol>
+<li>找规律，由题目所给的条件自己画多几个图找出画出哈密顿回路的最短路径。</li>
+<li>找到规律为：<ul>
+<li>若所给的点的数量为偶数，则最短路径就为点的数量。</li>
+<li>若所给的点的数量为奇数，则最短路径就为点的数量加上根号2。<br> (Tips: 这里由于题目所给出的输出保留两位小数，可以将根号2直接换成0.41)</li>
+</ul>
+</li>
+</ol>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span> </span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> 
+</span>{ 
+    <span class="keyword">int</span> n,m,t,i;
+    <span class="keyword">double</span> k; 
+    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t); 
+    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=t;i++) 
+    { 
+        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;n,&amp;m); 
+        <span class="built_in">printf</span>(<span class="string">"Scenario #%d:\n"</span>,i); 
+        k=n*m; 
+        <span class="keyword">if</span>(n%<span class="number">2</span>!=<span class="number">0</span> &amp;&amp; m%<span class="number">2</span>!=<span class="number">0</span>) 
+                <span class="built_in">printf</span>(<span class="string">"%.2f\n\n"</span>,k + <span class="number">0.41</span>); 
+        <span class="keyword">else</span> 
+                <span class="built_in">printf</span>(<span class="string">"%.2f\n\n"</span>,k);
+     } 
+<span class="keyword">return</span> <span class="number">0</span>;
+}    
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天AC了一道比较有趣的数学题～</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1046">题目</a> </strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[今年暑假不AC]]></title>
+    <link href="http://weirdforce.com/2016/03/10/jinnianshujiabuAC/"/>
+    <id>http://weirdforce.com/2016/03/10/jinnianshujiabuAC/</id>
+    <published>2016-03-10T03:44:08.000Z</published>
+    <updated>2017-04-28T03:50:50.000Z</updated>
+    <content type="html"><![CDATA[<p>好的，今天继续AC了一道比较简单的贪心题目。</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=2037" target="_blank" rel="external">题目</a></strong><br><a id="more"></a><br>题目的思路大致如下：<br>要使得看尽量多的完整的比赛，必须要使节目结束时间尽量早，且要使得下一个节目的开始时间比上一个节目的开始时间要晚。</p>
+<blockquote>
+<ol>
+<li>先将输入的节目单对其结束时间进行由小到大的排序。</li>
+<li>再从排好的节目单由第一个逐步寻找下一个节目开始时间比前一个节目时间晚的节目。并每次更新最后节目的结束时间。在节目单中，从头找到尾。</li>
+<li>每次找到新节目将节目计数器不断递增。</li>
+<li>输出可完整观看的节目总数。</li>
+</ol>
+</blockquote>
+<p>代码如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">int</span> t,count1,s,u,k;
+    <span class="keyword">int</span> a[<span class="number">101</span>];
+    <span class="keyword">int</span> b[<span class="number">101</span>];
+    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;t &amp;&amp; t)
+    {
+    count1=<span class="number">1</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)
+    {
+        <span class="built_in">cin</span>&gt;&gt;a[i]&gt;&gt;b[i];
+    }
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; (t-<span class="number">1</span>);i++)
+    {
+            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt; (t-<span class="number">1</span>-i);j++)
+        {   
+                 <span class="keyword">if</span>(b[j]&gt;b[j+<span class="number">1</span>])
+                 {
+                     k=b[j+<span class="number">1</span>];
+                     b[j+<span class="number">1</span>]=b[j];
+                     b[j]=k;
+                     k=a[j+<span class="number">1</span>];
+                     a[j+<span class="number">1</span>]=a[j];
+                     a[j]=k;
+                 }    
+        }   
+    }
+    s=a[<span class="number">0</span>];
+   u=b[<span class="number">0</span>];
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;t;i++)
+    {
+        <span class="keyword">if</span>(a[i] &gt;= u)
+        {
+            count1++;
+            u=b[i];
+        }  
+    }
+    <span class="built_in">cout</span>&lt;&lt;count1&lt;&lt;endl;
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>好的，今天继续AC了一道比较简单的贪心题目。</p>
+<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=2037">题目</a></strong><br>]]>
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
+    
+      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Moving Tables]]></title>
@@ -242,231 +1244,6 @@
       <category term="更新" scheme="http://weirdforce.com/tags/%E6%9B%B4%E6%96%B0/"/>
     
       <category term="Diary" scheme="http://weirdforce.com/categories/Diary/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[+生日快乐+]]></title>
-    <link href="http://weirdforce.com/2015/10/09/birthforyou/"/>
-    <id>http://weirdforce.com/2015/10/09/birthforyou/</id>
-    <published>2015-10-08T16:00:00.000Z</published>
-    <updated>2015-10-08T16:01:00.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="菁，今天你生日呢=w=">菁，今天你生日呢=w=</h1><h2 id="也不知道说些什么好呢？生日快乐哈~（记得我欠你一顿）">也不知道说些什么好呢？生日快乐哈~（记得我欠你一顿）</h2>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="菁，今天你生日呢=w=">菁，今天你生日呢=w=</h1><h2 id="也不知道说些什么好呢？生日快乐哈~（记得我欠你一顿）">也不知道说些什么好呢？生日快乐哈~（记得我欠你一顿）</h2>]]>
-    </summary>
-    
-      <category term="Birthday" scheme="http://weirdforce.com/tags/Birthday/"/>
-    
-      <category term="Event" scheme="http://weirdforce.com/categories/Event/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Birth]]></title>
-    <link href="http://weirdforce.com/2015/09/30/birth/"/>
-    <id>http://weirdforce.com/2015/09/30/birth/</id>
-    <published>2015-09-29T16:12:49.000Z</published>
-    <updated>2015-09-29T16:22:46.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="今天我生日~_+w+">今天我生日~ +w+</h1><h2 id="妍妹,同乐啊!~_-w-_lalala~~~">妍妹,同乐啊!~ -w- lalala~~~</h2>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="今天我生日~_+w+">今天我生日~ +w+</h1><h2 id="妍妹,同乐啊!~_-w-_lalala~~~">妍妹,同乐啊!~ -w- lalala~~~</h2>]]>
-    </summary>
-    
-      <category term="Birthday" scheme="http://weirdforce.com/tags/Birthday/"/>
-    
-      <category term="Event" scheme="http://weirdforce.com/categories/Event/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Thinking in Java]]></title>
-    <link href="http://weirdforce.com/2015/09/28/Thinking-in-Java/"/>
-    <id>http://weirdforce.com/2015/09/28/Thinking-in-Java/</id>
-    <published>2015-09-28T09:49:09.000Z</published>
-    <updated>2017-04-27T14:55:34.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="阅读《Thinking_in_Java》后记录的一些笔记">阅读《Thinking in Java》后记录的一些笔记</h1><hr>
-<h3 id="一、对象导论">一、对象导论</h3><p><strong>1.1 抽象过程</strong></p>
-<ol>
-<li>所有编程语言都提供抽象机制</li>
-<li>程序员必须建立起在机器模型和实际待解问题模型之间的关联</li>
-<li>OOP允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。</li>
-<li>Alan Kay总结了SmallTalk的五个基本特性：<ol>
-<li>万物皆为对象</li>
-<li>程序是对象的集合，它们通过发送消息来告知彼此所要做的。</li>
-<li>每个对象都有自己的由其他对象所构成的存储</li>
-<li>每个对象都拥有其类型</li>
-<li>某一特定类型的所有对象都可以接收同样的消息</li>
-</ol>
-</li>
-<li>可替代性是OOP中最强有力的概念之一</li>
-<li>对象具有状态、行为和标识</li>
-<li>每一个对象在内存中都有一个唯一的地址</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="阅读《Thinking_in_Java》后记录的一些笔记">阅读《Thinking in Java》后记录的一些笔记</h1><hr>
-<h3 id="一、对象导论">一、对象导论</h3><p><strong>1.1 抽象过程</strong></p>
-<ol>]]>
-    </summary>
-    
-      <category term="Java" scheme="http://weirdforce.com/tags/Java/"/>
-    
-      <category term="Note" scheme="http://weirdforce.com/categories/Note/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Windows Application Development (1)]]></title>
-    <link href="http://weirdforce.com/2015/08/20/Windows-Application-Development/"/>
-    <id>http://weirdforce.com/2015/08/20/Windows-Application-Development/</id>
-    <published>2015-08-20T12:21:58.000Z</published>
-    <updated>2015-08-20T15:00:52.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="为了完成Windows应用的开发，借本博客进行临时的笔记处理点~">为了完成Windows应用的开发，借本博客进行临时的笔记处理点~</h1><hr>
-<h3 id="1-Windows应用(C#)内部文件说明">1.Windows应用(C#)内部文件说明</h3><p><strong>Description</strong></p>
-<ol>
-<li><p>App.xaml / App.xaml.cs<br>定义应用程序的入口点，初始化应用程序范围内的资源,，显示应用程序用户界面</p>
-</li>
-<li><p>MainPage.xaml / MainPage.xaml.cs<br>定义应用程序中的程序页面（带有用户界面的页面）</p>
-</li>
-<li><p>ApplicationIcon.png<br>一种带有图标的图像文件，代表了手机应用程序列表中应用程序的图标</p>
-</li>
-<li><p>Background.png<br>一种带有图标的图像文件，代表了在开始页面上应用程序的图表</p>
-</li>
-<li><p>SplashScreenImage.jpg<br>这个图片会在应用程序第一次被启动时显示。启动画面会给用户一个即时的反馈，告诉用户应用程序正在启动直到成功跳转到应用程序的第一个页面。用户的启动画面可以和应用程序的一个页面设计的非常相似，这样能给使用这一个应用程序被快速加载的感觉。</p>
-</li>
-<li><p>Properties\AppManifest.xml<br>一个生成应用程序包所必需的应用程序清单文件</p>
-</li>
-<li><p>Properties\AssemblyInfo.cs<br>包含名称和版本的元数据，这些元数据将被嵌入到生成的程序集</p>
-</li>
-<li><p>Properties\WMAppManifest.xml<br>一个包含与Windows Phone Silverlight应用程序相关的特定元数据的清单文件，且包含了用于Windows Phone的Silverlight所具有的特定功能</p>
-</li>
-<li><p>References folder<br>一些库文件（集）的列表，为应用程序的工作提供功能和服务。</p>
-<h1 id="<!-_more_->"><a id="more"></a></h1></li>
-</ol>
-<p>App.xaml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Application</span> </span></div><div class="line">    <span class="attr">x:Class</span>=<span class="string">"HelloPhone.App"</span></div><div class="line">    <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>       </div><div class="line">    <span class="attr">xmlns:x</span>=<span class="string">"http://schemas.microsoft.com/winfx/2006/xaml"</span></div><div class="line">    <span class="attr">xmlns:phone</span>=<span class="string">"clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"</span></div><div class="line">    <span class="attr">xmlns:shell</span>=<span class="string">"clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--Application Resources--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Application.Resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Application.Resources</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Application.ApplicationLifetimeObjects</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--Required object that handles lifetime events for the application--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">shell:PhoneApplicationService</span> </span></div><div class="line">            <span class="attr">Launching</span>=<span class="string">"Application_Launching"</span> <span class="attr">Closing</span>=<span class="string">"Application_Closing"</span> </div><div class="line">            <span class="attr">Activated</span>=<span class="string">"Application_Activated"</span> <span class="attr">Deactivated</span>=<span class="string">"Application_Deactivated"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">Application.ApplicationLifetimeObjects</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">Application</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>App.xaml.cs<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// Microsoft Developer &amp; Platform Evangelism</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// Copyright (c) Microsoft Corporation. All rights reserved.</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, </span></div><div class="line"><span class="comment">// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES </span></div><div class="line"><span class="comment">// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// The example companies, organizations, products, domain names,</span></div><div class="line"><span class="comment">// e-mail addresses, logos, people, places, and events depicted</span></div><div class="line"><span class="comment">// herein are fictitious.  No association with any real company,</span></div><div class="line"><span class="comment">// organization, product, domain name, email address, logo, person,</span></div><div class="line"><span class="comment">// places, or events is intended or should be inferred.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> System.Linq;</div><div class="line"><span class="keyword">using</span> System.Net;</div><div class="line"><span class="keyword">using</span> System.Windows;</div><div class="line"><span class="keyword">using</span> System.Windows.Controls;</div><div class="line"><span class="keyword">using</span> System.Windows.Documents;</div><div class="line"><span class="keyword">using</span> System.Windows.Input;</div><div class="line"><span class="keyword">using</span> System.Windows.Media;</div><div class="line"><span class="keyword">using</span> System.Windows.Media.Animation;</div><div class="line"><span class="keyword">using</span> System.Windows.Navigation;</div><div class="line"><span class="keyword">using</span> System.Windows.Shapes;</div><div class="line"><span class="keyword">using</span> Microsoft.Phone.Controls;</div><div class="line"><span class="keyword">using</span> Microsoft.Phone.Shell;</div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">HelloPhone</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">App</span> : <span class="title">Application</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></div><div class="line">        <span class="comment"><span class="doctag">///</span> Provides easy access to the root frame of the Phone Application.</span></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>The root frame of the Phone Application.<span class="doctag">&lt;/returns&gt;</span></span></div><div class="line">        <span class="keyword">public</span> PhoneApplicationFrame RootFrame &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</div><div class="line"></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></div><div class="line">        <span class="comment"><span class="doctag">///</span> Constructor for the Application object.</span></div><div class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">App</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">// Global handler for uncaught exceptions. </span></div><div class="line">            UnhandledException += Application_UnhandledException;</div><div class="line"></div><div class="line">            <span class="comment">// Show graphics profiling information while debugging.</span></div><div class="line">            <span class="keyword">if</span> (System.Diagnostics.Debugger.IsAttached)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// Display the current frame rate counters.</span></div><div class="line">                Application.Current.Host.Settings.EnableFrameRateCounter = <span class="literal">true</span>;</div><div class="line"></div><div class="line">                <span class="comment">// Show the areas of the app that are being redrawn in each frame.</span></div><div class="line">                <span class="comment">//Application.Current.Host.Settings.EnableRedrawRegions = true;</span></div><div class="line"></div><div class="line">                <span class="comment">// Enable non-production analysis visualization mode, </span></div><div class="line">                <span class="comment">// which shows areas of a page that are being GPU accelerated with a colored overlay.</span></div><div class="line">                <span class="comment">//Application.Current.Host.Settings.EnableCacheVisualization = true;</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// Standard Silverlight initialization</span></div><div class="line">            InitializeComponent();</div><div class="line"></div><div class="line">            <span class="comment">// Phone-specific initialization</span></div><div class="line">            InitializePhoneApplication();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is launching (eg, from Start)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is reactivated</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Launching</span>(<span class="params"><span class="keyword">object</span> sender, LaunchingEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is activated (brought to foreground)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is first launched</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Activated</span>(<span class="params"><span class="keyword">object</span> sender, ActivatedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is deactivated (sent to background)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is closing</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Deactivated</span>(<span class="params"><span class="keyword">object</span> sender, DeactivatedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute when the application is closing (eg, user hit Back)</span></div><div class="line">        <span class="comment">// This code will not execute when the application is deactivated</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_Closing</span>(<span class="params"><span class="keyword">object</span> sender, ClosingEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute if a navigation fails</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">RootFrame_NavigationFailed</span>(<span class="params"><span class="keyword">object</span> sender, NavigationFailedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (System.Diagnostics.Debugger.IsAttached)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// A navigation has failed; break into the debugger</span></div><div class="line">                System.Diagnostics.Debugger.Break();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Code to execute on Unhandled Exceptions</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Application_UnhandledException</span>(<span class="params"><span class="keyword">object</span> sender, ApplicationUnhandledExceptionEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (System.Diagnostics.Debugger.IsAttached)</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// An unhandled exception has occurred; break into the debugger</span></div><div class="line">                System.Diagnostics.Debugger.Break();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">#<span class="meta-keyword">region</span> Phone application initialization</span></div><div class="line"></div><div class="line">        <span class="comment">// Avoid double-initialization</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">bool</span> phoneApplicationInitialized = <span class="literal">false</span>;</div><div class="line"></div><div class="line">        <span class="comment">// Do not add any additional code to this method</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">InitializePhoneApplication</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (phoneApplicationInitialized)</div><div class="line">                <span class="keyword">return</span>;</div><div class="line"></div><div class="line">            <span class="comment">// Create the frame but don't set it as RootVisual yet; this allows the splash</span></div><div class="line">            <span class="comment">// screen to remain active until the application is ready to render.</span></div><div class="line">            RootFrame = <span class="keyword">new</span> PhoneApplicationFrame();</div><div class="line">            RootFrame.Navigated += CompleteInitializePhoneApplication;</div><div class="line"></div><div class="line">            <span class="comment">// Handle navigation failures</span></div><div class="line">            RootFrame.NavigationFailed += RootFrame_NavigationFailed;</div><div class="line"></div><div class="line">            <span class="comment">// Ensure we don't initialize again</span></div><div class="line">            phoneApplicationInitialized = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Do not add any additional code to this method</span></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CompleteInitializePhoneApplication</span>(<span class="params"><span class="keyword">object</span> sender, NavigationEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">// Set the root visual to allow the application to render</span></div><div class="line">            <span class="keyword">if</span> (RootVisual != RootFrame)</div><div class="line">                RootVisual = RootFrame;</div><div class="line"></div><div class="line">            <span class="comment">// Remove this handler since it is no longer needed</span></div><div class="line">            RootFrame.Navigated -= CompleteInitializePhoneApplication;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>页面布局</p>
-<p>MainPage.xaml</p>
-<phone:phoneapplicationpage x:class="HelloPhone.MainPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:ignorable="d" d:designwidth="480" d:designheight="768" fontfamily="{StaticResource PhoneFontFamilyNormal}" fontsize="{StaticResource PhoneFontSizeNormal}" foreground="{StaticResource PhoneForegroundBrush}" supportedorientations="Portrait" orientation="Portrait" shell:systemtray.isvisible="True">
-
-<pre><code><span class="comment">&lt;!--LayoutRoot is the root grid where all page content is placed--&gt;</span>
-<span class="tag">&lt;<span class="title">Grid</span> <span class="attribute">x:Name</span>=<span class="value">"LayoutRoot"</span> <span class="attribute">Background</span>=<span class="value">"Transparent"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">Grid.RowDefinitions</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">RowDefinition</span> <span class="attribute">Height</span>=<span class="value">"Auto"</span>/&gt;</span>
-        <span class="tag">&lt;<span class="title">RowDefinition</span> <span class="attribute">Height</span>=<span class="value">"Auto"</span>/&gt;</span>
-        <span class="tag">&lt;<span class="title">RowDefinition</span> <span class="attribute">Height</span>=<span class="value">"*"</span>/&gt;</span>
-    <span class="tag">&lt;/<span class="title">Grid.RowDefinitions</span>&gt;</span>
-
-    <span class="comment">&lt;!--TitlePanel contains the name of the application and page title--&gt;</span>
-    <span class="tag">&lt;<span class="title">StackPanel</span> <span class="attribute">x:Name</span>=<span class="value">"TitlePanel"</span> <span class="attribute">Grid.Row</span>=<span class="value">"0"</span> <span class="attribute">Margin</span>=<span class="value">"12,17,0,28"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">TextBlock</span> <span class="attribute">x:Name</span>=<span class="value">"ApplicationTitle"</span> <span class="attribute">Text</span>=<span class="value">"MY APPLICATION"</span> <span class="attribute">Style</span>=<span class="value">"{StaticResource PhoneTextNormalStyle}"</span>/&gt;</span>
-        <span class="tag">&lt;<span class="title">TextBlock</span> <span class="attribute">x:Name</span>=<span class="value">"PageTitle"</span> <span class="attribute">Text</span>=<span class="value">"page name"</span> <span class="attribute">Margin</span>=<span class="value">"9,-7,0,0"</span> <span class="attribute">Style</span>=<span class="value">"{StaticResource PhoneTextTitle1Style}"</span>/&gt;</span>
-    <span class="tag">&lt;/<span class="title">StackPanel</span>&gt;</span>
-
-    <span class="comment">&lt;!--ContentPanel - place additional content here--&gt;</span>
-    <span class="tag">&lt;<span class="title">Grid</span> <span class="attribute">x:Name</span>=<span class="value">"ContentPanel"</span> <span class="attribute">Grid.Row</span>=<span class="value">"1"</span> <span class="attribute">Margin</span>=<span class="value">"12,0,12,0"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">Grid.ColumnDefinitions</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">ColumnDefinition</span> <span class="attribute">Width</span>=<span class="value">"*"</span> /&gt;</span>
-            <span class="tag">&lt;<span class="title">ColumnDefinition</span> <span class="attribute">Width</span>=<span class="value">"Auto"</span>/&gt;</span>
-        <span class="tag">&lt;/<span class="title">Grid.ColumnDefinitions</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">TextBox</span> <span class="attribute">Grid.Column</span>=<span class="value">"0"</span> <span class="attribute">Name</span>=<span class="value">"MessageTextBox"</span> <span class="attribute">FontSize</span>=<span class="value">"{StaticResource PhoneFontSizeExtraLarge}"</span> <span class="attribute">Margin</span>=<span class="value">"20,20,10,20"</span>/&gt;</span>
-        <span class="tag">&lt;<span class="title">Button</span> <span class="attribute">Grid.Column</span>=<span class="value">"1"</span> <span class="attribute">Name</span>=<span class="value">"ClickMeButton"</span> <span class="attribute">Content</span>=<span class="value">"Click Me"</span> <span class="attribute">HorizontalAlignment</span>=<span class="value">"Right"</span> <span class="attribute">Padding</span>=<span class="value">"4"</span> <span class="attribute">Margin</span>=<span class="value">"10,20,20,20"</span> <span class="attribute">Click</span>=<span class="value">"ClickMeButton_Click"</span> /&gt;</span>
-    <span class="tag">&lt;/<span class="title">Grid</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">Grid</span> <span class="attribute">Grid.Row</span>=<span class="value">"2"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">TextBlock</span> <span class="attribute">Name</span>=<span class="value">"BannerTextBlock"</span> <span class="attribute">Style</span>=<span class="value">"{StaticResource PhoneTextExtraLargeStyle}"</span> 
-           <span class="attribute">Foreground</span>=<span class="value">"#FFFF9A00"</span> <span class="attribute">HorizontalAlignment</span>=<span class="value">"Stretch"</span>
-           <span class="attribute">TextWrapping</span>=<span class="value">"Wrap"</span> <span class="attribute">TextAlignment</span>=<span class="value">"Center"</span> <span class="attribute">FontWeight</span>=<span class="value">"Bold"</span> /&gt;</span>
-    <span class="tag">&lt;/<span class="title">Grid</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">Grid</span>&gt;</span>
-
-<span class="comment">&lt;!--Sample code showing usage of ApplicationBar--&gt;</span>
-<span class="comment">&lt;!--&lt;phone:PhoneApplicationPage.ApplicationBar&gt;
-    &lt;shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"&gt;
-        &lt;shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/&gt;
-        &lt;shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/&gt;
-        &lt;shell:ApplicationBar.MenuItems&gt;
-            &lt;shell:ApplicationBarMenuItem Text="MenuItem 1"/&gt;
-            &lt;shell:ApplicationBarMenuItem Text="MenuItem 2"/&gt;
-        &lt;/shell:ApplicationBar.MenuItems&gt;
-    &lt;/shell:ApplicationBar&gt;
-&lt;/phone:PhoneApplicationPage.ApplicationBar&gt;--&gt;</span>
-</code></pre><p></p></phone:phoneapplicationpage><p></p>
-<p>后台代码</p>
-<p>MainPage.xaml.cs</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// Microsoft Developer &amp; Platform Evangelism</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// Copyright (c) Microsoft Corporation. All rights reserved.</span></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="comment">// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, </span></div><div class="line"><span class="comment">// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES </span></div><div class="line"><span class="comment">// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"><span class="comment">// The example companies, organizations, products, domain names,</span></div><div class="line"><span class="comment">// e-mail addresses, logos, people, places, and events depicted</span></div><div class="line"><span class="comment">// herein are fictitious.  No association with any real company,</span></div><div class="line"><span class="comment">// organization, product, domain name, email address, logo, person,</span></div><div class="line"><span class="comment">// places, or events is intended or should be inferred.</span></div><div class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> System.Linq;</div><div class="line"><span class="keyword">using</span> System.Net;</div><div class="line"><span class="keyword">using</span> System.Windows;</div><div class="line"><span class="keyword">using</span> System.Windows.Controls;</div><div class="line"><span class="keyword">using</span> System.Windows.Documents;</div><div class="line"><span class="keyword">using</span> System.Windows.Input;</div><div class="line"><span class="keyword">using</span> System.Windows.Media;</div><div class="line"><span class="keyword">using</span> System.Windows.Media.Animation;</div><div class="line"><span class="keyword">using</span> System.Windows.Shapes;</div><div class="line"><span class="keyword">using</span> Microsoft.Phone.Controls;</div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">HelloPhone</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainPage</span> : <span class="title">PhoneApplicationPage</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// Constructor</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainPage</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line">            InitializeComponent();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ClickMeButton_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line">            BannerTextBlock.Text = MessageTextBox.Text;</div><div class="line">            MessageTextBox.Text = String.Empty;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Properties\AppManifest.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Deployment</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/client/2007/deployment"</span></span></div><div class="line">        <span class="attr">xmlns:x</span>=<span class="string">"http://schemas.microsoft.com/winfx/2006/xaml"</span></div><div class="line">&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">Deployment.Parts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Deployment.Parts</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Deployment</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>Properties\AssemblyInfo.cs<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">// <span class="comment">----------------------------------------------------------------------------------</span></div><div class="line">// Microsoft Developer &amp; Platform Evangelism</div><div class="line">// </div><div class="line">// Copyright (c) Microsoft Corporation. All rights reserved.</div><div class="line">// </div><div class="line">// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, </div><div class="line">// EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES </div><div class="line">// OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</div><div class="line">// <span class="comment">----------------------------------------------------------------------------------</span></div><div class="line">// The example companies, organizations, products, domain names,</div><div class="line">// e-mail addresses, logos, people, places, and events depicted</div><div class="line">// herein are fictitious.  No association with any real company,</div><div class="line">// organization, product, domain name, email address, logo, person,</div><div class="line">// places, or events is intended or should be inferred.</div><div class="line">// <span class="comment">----------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line">using System.Reflection;</div><div class="line">using System.Runtime.CompilerServices;</div><div class="line">using System.Runtime.InteropServices;</div><div class="line"></div><div class="line">// General Information about an assembly is controlled through the following </div><div class="line">// <span class="keyword">set</span> <span class="keyword">of</span> attributes. <span class="keyword">Change</span> these <span class="keyword">attribute</span> <span class="keyword">values</span> <span class="keyword">to</span> <span class="keyword">modify</span> the information</div><div class="line">// associated <span class="keyword">with</span> an assembly.</div><div class="line">[<span class="keyword">assembly</span>: AssemblyTitle(<span class="string">"HelloPhone"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyDescription(<span class="string">""</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyConfiguration(<span class="string">""</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyCompany(<span class="string">"Microsoft"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyProduct(<span class="string">"HelloPhone"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyCopyright(<span class="string">"Copyright © Microsoft 2010"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyTrademark(<span class="string">""</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyCulture(<span class="string">""</span>)]</div><div class="line"></div><div class="line">// Setting ComVisible <span class="keyword">to</span> <span class="literal">false</span> makes the types <span class="keyword">in</span> this <span class="keyword">assembly</span> <span class="keyword">not</span> <span class="keyword">visible</span> </div><div class="line">// <span class="keyword">to</span> COM components.  <span class="keyword">If</span> you need <span class="keyword">to</span> <span class="keyword">access</span> a <span class="keyword">type</span> <span class="keyword">in</span> this <span class="keyword">assembly</span> <span class="keyword">from</span> </div><div class="line">// COM, <span class="keyword">set</span> the ComVisible <span class="keyword">attribute</span> <span class="keyword">to</span> <span class="literal">true</span> <span class="keyword">on</span> that type.</div><div class="line">[<span class="keyword">assembly</span>: ComVisible(<span class="literal">false</span>)]</div><div class="line"></div><div class="line">// The <span class="keyword">following</span> GUID <span class="keyword">is</span> <span class="keyword">for</span> the <span class="keyword">ID</span> <span class="keyword">of</span> the typelib <span class="keyword">if</span> this <span class="keyword">project</span> <span class="keyword">is</span> exposed <span class="keyword">to</span> COM</div><div class="line">[<span class="keyword">assembly</span>: Guid(<span class="string">"a81cc8df-2751-450a-8406-dac02f97bbb5"</span>)]</div><div class="line"></div><div class="line">// <span class="keyword">Version</span> information <span class="keyword">for</span> an <span class="keyword">assembly</span> consists <span class="keyword">of</span> the <span class="keyword">following</span> four <span class="keyword">values</span>:</div><div class="line">//</div><div class="line">//      Major <span class="keyword">Version</span></div><div class="line">//      Minor <span class="keyword">Version</span> </div><div class="line">//      <span class="keyword">Build</span> <span class="built_in">Number</span></div><div class="line">//      Revision</div><div class="line">//</div><div class="line">// You can specify all the <span class="keyword">values</span> <span class="keyword">or</span> you can <span class="keyword">default</span> the Revision <span class="keyword">and</span> <span class="keyword">Build</span> Numbers </div><div class="line">// <span class="keyword">by</span> <span class="keyword">using</span> the <span class="string">'*'</span> <span class="keyword">as</span> shown below:</div><div class="line">[<span class="keyword">assembly</span>: AssemblyVersion(<span class="string">"1.0.0.0"</span>)]</div><div class="line">[<span class="keyword">assembly</span>: AssemblyFileVersion(<span class="string">"1.0.0.0"</span>)]</div></pre></td></tr></table></figure></p>
-<p>Properties\WMAppManifest.xml</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">Deployment</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/windowsphone/2009/deployment"</span> <span class="attr">AppPlatformVersion</span>=<span class="string">"7.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">App</span> <span class="attr">xmlns</span>=<span class="string">""</span> <span class="attr">ProductID</span>=<span class="string">"</span></span><span class="template-variable">&#123;67b136af-08e1-473d-8d02-c878debcb8c4&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">Title</span>=<span class="string">"HelloPhone"</span> <span class="attr">RuntimeType</span>=<span class="string">"Silverlight"</span> <span class="attr">Version</span>=<span class="string">"1.0.0.0"</span> <span class="attr">Genre</span>=<span class="string">"apps.normal"</span>  <span class="attr">Author</span>=<span class="string">"HelloPhone author"</span> <span class="attr">Description</span>=<span class="string">"Sample description"</span> <span class="attr">Publisher</span>=<span class="string">"HelloPhone"</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">IconPath</span> <span class="attr">IsRelative</span>=<span class="string">"true"</span> <span class="attr">IsResource</span>=<span class="string">"false"</span>&gt;</span>ApplicationIcon.png<span class="tag">&lt;/<span class="name">IconPath</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Capabilities</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_GAMERSERVICES"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_IDENTITY_DEVICE"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_IDENTITY_USER"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_LOCATION"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_MEDIALIB"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_MICROPHONE"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_NETWORKING"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_PHONEDIALER"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_PUSH_NOTIFICATION"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_SENSORS"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">"ID_CAP_WEBBROWSERCOMPONENT"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Capabilities</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Tasks</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">DefaultTask</span>  <span class="attr">Name</span> =<span class="string">"_default"</span> <span class="attr">NavigationPage</span>=<span class="string">"MainPage.xaml"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Tasks</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Tokens</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">PrimaryToken</span> <span class="attr">TokenID</span>=<span class="string">"HelloPhoneToken"</span> <span class="attr">TaskName</span>=<span class="string">"_default"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">TemplateType5</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">BackgroundImageURI</span> <span class="attr">IsRelative</span>=<span class="string">"true"</span> <span class="attr">IsResource</span>=<span class="string">"false"</span>&gt;</span>Background.png<span class="tag">&lt;/<span class="name">BackgroundImageURI</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Count</span>&gt;</span>0<span class="tag">&lt;/<span class="name">Count</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Title</span>&gt;</span>HelloPhone<span class="tag">&lt;/<span class="name">Title</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">TemplateType5</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">PrimaryToken</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Tokens</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">App</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Deployment</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="为了完成Windows应用的开发，借本博客进行临时的笔记处理点~">为了完成Windows应用的开发，借本博客进行临时的笔记处理点~</h1><hr>
-<h3 id="1-Windows应用(C#)内部文件说明">1.Windows应用(C#)内部文件说明</h3><p><strong>Description</strong></p>
-<ol>
-<li><p>App.xaml / App.xaml.cs<br>定义应用程序的入口点，初始化应用程序范围内的资源,，显示应用程序用户界面</p>
-</li>
-<li><p>MainPage.xaml / MainPage.xaml.cs<br>定义应用程序中的程序页面（带有用户界面的页面）</p>
-</li>
-<li><p>ApplicationIcon.png<br>一种带有图标的图像文件，代表了手机应用程序列表中应用程序的图标</p>
-</li>
-<li><p>Background.png<br>一种带有图标的图像文件，代表了在开始页面上应用程序的图表</p>
-</li>
-<li><p>SplashScreenImage.jpg<br>这个图片会在应用程序第一次被启动时显示。启动画面会给用户一个即时的反馈，告诉用户应用程序正在启动直到成功跳转到应用程序的第一个页面。用户的启动画面可以和应用程序的一个页面设计的非常相似，这样能给使用这一个应用程序被快速加载的感觉。</p>
-</li>
-<li><p>Properties\AppManifest.xml<br>一个生成应用程序包所必需的应用程序清单文件</p>
-</li>
-<li><p>Properties\AssemblyInfo.cs<br>包含名称和版本的元数据，这些元数据将被嵌入到生成的程序集</p>
-</li>
-<li><p>Properties\WMAppManifest.xml<br>一个包含与Windows Phone Silverlight应用程序相关的特定元数据的清单文件，且包含了用于Windows Phone的Silverlight所具有的特定功能</p>
-</li>
-<li><p>References folder<br>一些库文件（集）的列表，为应用程序的工作提供功能和服务。</p>
-<h1 id="<!-_more_->">]]>
-    
-    </summary>
-    
-      <category term="Windows应用开发" scheme="http://weirdforce.com/tags/Windows%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="Development" scheme="http://weirdforce.com/categories/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[BookReview————《旅行的艺术》]]></title>
-    <link href="http://weirdforce.com/2015/08/19/BookReview/"/>
-    <id>http://weirdforce.com/2015/08/19/BookReview/</id>
-    <published>2015-08-19T15:07:03.000Z</published>
-    <updated>2015-08-20T15:00:36.000Z</updated>
-    <content type="html"><![CDATA[<p>在师兄充满文艺气息的书单里，偶然发现了此书之后，便恋恋不忘。直到再一次从书店遇见，便欣喜地买了下来。<br>德波顿开篇的短序便让我如此印象深刻——“最好的书能清楚地阐明你长久以来一直心有所感，却从来没办法明白表达出来的那些东西。”<br>那些藏在生活里，冥冥之中在某一刻与我们思维有所联系的东西，是那么令我们向往，而我们往往只可意会，难以言传。而当再一次在书中与它们相遇时，我们有一种由衷的喜悦，如再见故友一般亲切，那么此书对我们而言，便是好的，它像一座桥梁，缩短我们与生活中事物之间的距离。<br>无论是充满期待的出发还是不舍的归去，书中都阐述了不一样的旅行方式（所谓艺术）。但我认为，书中讲述的艺术其实不局限于旅行，更能推广于生活中。显然，旅行是生活的一部分，更通俗地讲，旅行是到陌生的地方进行生活，那么其中必有所通。这也是为何德波顿在书中的最后讲到了德·梅伊斯特，讲到了在熟悉的城市生活中也要保持足够的敏感性。而在这刻，我想起了罗丹，他那脍炙人口的名言—“生活中从不缺少美，而是缺少发现美的眼睛。”，也在时刻暗示着我们，即便是在这喧嚣浮沉的闹市中，也或有不一样的美等着我们发现！<br>读完全书，令我不禁感叹不已的便是旅行之好奇。当读到洪堡在南美洲不停地进行着勘测和验证时，我的心情是嫉妒的。<br><a id="more"></a><br>那么，为何嫉妒呢？</p>
-<p>自然而然，我不仅是嫉妒当时的他能够周游四海，四处旅行，更嫉妒他那充满活力的好奇心。<br>众所周知，未知和神秘，最能引发一个人的好奇。它们引导着他慢慢探索，慢慢追寻，将未知变成已知。而看看如今的我们，被动的知识传授，应试的教育体制，无不在削弱我们的好奇心。属于人类天性的那份好奇，已经慢慢在现实的压力下，成了困于笼中金丝雀。如今的我们，或许真应该多问问自己，我们所追寻的，是我们真的想了解的吗？放下那份现实压力，抛开他人的成见，我们在内心深处到底追寻的是什么？而我们的好奇终是归于压力之下，湮灭于其中，还是在这一刻得以重见天日？<br>我很庆幸，我能走在我一直想要走的路上，从未变过。即使渐渐地，我在与生活的妥协里丢失了好奇。但这一刻，当我重新将它带回之时，我对我的前路更加充满了信心！<br>即便前路未至，请让此刻先拥抱太阳，目标是星辰大海！</p>
-<h1 id="从LOFTER那里转回来的,看过的话……嗯,我是不介意再看一次~">从LOFTER那里转回来的,看过的话……嗯,我是不介意再看一次~</h1>]]></content>
-    <summary type="html">
-    <![CDATA[<p>在师兄充满文艺气息的书单里，偶然发现了此书之后，便恋恋不忘。直到再一次从书店遇见，便欣喜地买了下来。<br>德波顿开篇的短序便让我如此印象深刻——“最好的书能清楚地阐明你长久以来一直心有所感，却从来没办法明白表达出来的那些东西。”<br>那些藏在生活里，冥冥之中在某一刻与我们思维有所联系的东西，是那么令我们向往，而我们往往只可意会，难以言传。而当再一次在书中与它们相遇时，我们有一种由衷的喜悦，如再见故友一般亲切，那么此书对我们而言，便是好的，它像一座桥梁，缩短我们与生活中事物之间的距离。<br>无论是充满期待的出发还是不舍的归去，书中都阐述了不一样的旅行方式（所谓艺术）。但我认为，书中讲述的艺术其实不局限于旅行，更能推广于生活中。显然，旅行是生活的一部分，更通俗地讲，旅行是到陌生的地方进行生活，那么其中必有所通。这也是为何德波顿在书中的最后讲到了德·梅伊斯特，讲到了在熟悉的城市生活中也要保持足够的敏感性。而在这刻，我想起了罗丹，他那脍炙人口的名言—“生活中从不缺少美，而是缺少发现美的眼睛。”，也在时刻暗示着我们，即便是在这喧嚣浮沉的闹市中，也或有不一样的美等着我们发现！<br>读完全书，令我不禁感叹不已的便是旅行之好奇。当读到洪堡在南美洲不停地进行着勘测和验证时，我的心情是嫉妒的。<br>]]>
-    
-    </summary>
-    
-      <category term="旅行的艺术" scheme="http://weirdforce.com/tags/%E6%97%85%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF/"/>
-    
-      <category term="BookReview" scheme="http://weirdforce.com/categories/BookReview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Weirdforce的诞生！]]></title>
-    <link href="http://weirdforce.com/2015/08/18/first-test/"/>
-    <id>http://weirdforce.com/2015/08/18/first-test/</id>
-    <published>2015-08-18T03:39:38.000Z</published>
-    <updated>2015-08-18T09:01:44.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="欢迎来到我的个人网站~">欢迎来到我的个人网站~</h1><hr>
-<p>这个网站是我刚刚搭好的新网站 —— <strong>WeirdForce</strong>，具体的功能还在逐步完善当中，很欢迎大家通过右侧的联系方式联系我提出你们的意见~<br>如果想知道如何搭建自己的<strong>个人网站</strong>，也可以跟我联系，我会很高兴地分享的~</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="欢迎来到我的个人网站~">欢迎来到我的个人网站~</h1><hr>
-<p>这个网站是我刚刚搭好的新网站 —— <strong>WeirdForce</strong>，具体的功能还在逐步完善当中，很欢迎大家通过右侧的联系方式联系我提出你们的意见~<br>如果想知道如]]>
-    </summary>
-    
-      <category term="博客" scheme="http://weirdforce.com/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-      <category term="blog" scheme="http://weirdforce.com/categories/blog/"/>
     
   </entry>
   
