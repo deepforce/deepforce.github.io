@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://weirdforce.com/2017/05/05/Machine-Learning-note-1/</loc>
+    <lastmod>2017-05-05T09:23:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://weirdforce.com/2017/05/05/Machine-Learning/</loc>
+    <lastmod>2017-05-05T08:53:21.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://weirdforce.com/2017/05/04/Compile/</loc>
     <lastmod>2017-05-05T08:16:32.000Z</lastmod>
   </url>
@@ -34,11 +44,6 @@
   <url>
     <loc>http://weirdforce.com/2016/04/09/MCM-note-2/</loc>
     <lastmod>2017-04-28T06:46:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://weirdforce.com/2016/04/02/Machine-Learning/</loc>
-    <lastmod>2017-04-28T06:38:24.000Z</lastmod>
   </url>
   
   <url>
