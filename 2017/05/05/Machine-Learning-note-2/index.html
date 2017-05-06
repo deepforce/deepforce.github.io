@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Machine Learning,机器学习," />
 
 
 
@@ -41,17 +41,20 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="阅读《Thinking in Java》后记录的一些笔记 一、对象导论1.1 抽象过程  所有编程语言都提供抽象机制 程序员必须建立起在机器模型和实际待解问题模型之间的关联 OOP允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。 Alan Kay总结了SmallTalk的五个基本特性： 万物皆为对象 程序是对象的集合，它们通过发送消息来告知彼此所要做的。 每个对象都有自己的由其他">
-<meta name="keywords" content="Java">
+<meta name="description" content="本篇总结监督学习。">
+<meta name="keywords" content="Machine Learning,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thinking in Java">
-<meta property="og:url" content="http://weirdforce.com/2015/09/28/Thinking-in-Java/index.html">
+<meta property="og:title" content="Machine-Learning课程笔记(2)">
+<meta property="og:url" content="http://weirdforce.com/2017/05/05/Machine-Learning-note-2/index.html">
 <meta property="og:site_name" content="Zack's Park">
-<meta property="og:description" content="阅读《Thinking in Java》后记录的一些笔记 一、对象导论1.1 抽象过程  所有编程语言都提供抽象机制 程序员必须建立起在机器模型和实际待解问题模型之间的关联 OOP允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。 Alan Kay总结了SmallTalk的五个基本特性： 万物皆为对象 程序是对象的集合，它们通过发送消息来告知彼此所要做的。 每个对象都有自己的由其他">
-<meta property="og:updated_time" content="2017-04-27T14:55:34.000Z">
+<meta property="og:description" content="本篇总结监督学习。">
+<meta property="og:image" content="http://weirdforce.com/images/predict_house_price.png">
+<meta property="og:image" content="http://weirdforce.com/images/breast_cancer.png">
+<meta property="og:updated_time" content="2017-05-06T03:43:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thinking in Java">
-<meta name="twitter:description" content="阅读《Thinking in Java》后记录的一些笔记 一、对象导论1.1 抽象过程  所有编程语言都提供抽象机制 程序员必须建立起在机器模型和实际待解问题模型之间的关联 OOP允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。 Alan Kay总结了SmallTalk的五个基本特性： 万物皆为对象 程序是对象的集合，它们通过发送消息来告知彼此所要做的。 每个对象都有自己的由其他">
+<meta name="twitter:title" content="Machine-Learning课程笔记(2)">
+<meta name="twitter:description" content="本篇总结监督学习。">
+<meta name="twitter:image" content="http://weirdforce.com/images/predict_house_price.png">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +64,7 @@
   };
 </script>
 
-  <title> Thinking in Java | Zack's Park </title>
+  <title> Machine-Learning课程笔记(2) | Zack's Park </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -216,7 +219,7 @@
           
           
             
-              Thinking in Java
+              Machine-Learning课程笔记(2)
             
           
         </h1>
@@ -225,8 +228,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-28T17:49:09+08:00" content="2015-09-28">
-            2015-09-28
+          <time itemprop="dateCreated" datetime="2017-05-05T19:12:11+08:00" content="2017-05-05">
+            2017-05-05
           </time>
         </span>
 
@@ -235,8 +238,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Note/" itemprop="url" rel="index">
-                  <span itemprop="name">Note</span>
+                <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                  <span itemprop="name">Machine Learning</span>
                 </a>
               </span>
 
@@ -251,8 +254,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/09/28/Thinking-in-Java/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/28/Thinking-in-Java/" itemprop="commentsCount"></span>
+              <a href="/2017/05/05/Machine-Learning-note-2/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/05/Machine-Learning-note-2/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -266,24 +269,17 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="阅读《Thinking_in_Java》后记录的一些笔记">阅读《Thinking in Java》后记录的一些笔记</h1><hr>
-<h3 id="一、对象导论">一、对象导论</h3><p><strong>1.1 抽象过程</strong></p>
+        <span itemprop="articleBody"><p>本篇总结监督学习。<br><a id="more"></a></p>
+<h3 id="监督学习是什么？">监督学习是什么？</h3><p><strong>监督学习指的是我们获得一个数据集，看作输入，同时我们知道正确的答案，看作输出。认为输入和输出之间存在一定的关系。</strong><br>监督学习被分成了两类问题：</p>
+<blockquote>
 <ol>
-<li>所有编程语言都提供抽象机制</li>
-<li>程序员必须建立起在机器模型和实际待解问题模型之间的关联</li>
-<li>OOP允许根据问题来描述问题，而不是根据运行解决方案的计算机来描述问题。</li>
-<li>Alan Kay总结了SmallTalk的五个基本特性：<ol>
-<li>万物皆为对象</li>
-<li>程序是对象的集合，它们通过发送消息来告知彼此所要做的。</li>
-<li>每个对象都有自己的由其他对象所构成的存储</li>
-<li>每个对象都拥有其类型</li>
-<li>某一特定类型的所有对象都可以接收同样的消息</li>
+<li><strong>回归问题(Regression)</strong></li>
+<li><strong>分类问题(Classification)</strong></li>
 </ol>
-</li>
-<li>可替代性是OOP中最强有力的概念之一</li>
-<li>对象具有状态、行为和标识</li>
-<li>每一个对象在内存中都有一个唯一的地址</li>
-</ol>
+</blockquote>
+<p><strong>回归问题</strong>：在回归问题中，我们试着在一段连续的输出中预测结果。即意味着我们试着将输入变量映射到某些连续函数上。如：预测房价（如下图）。<br><img src="/images/predict_house_price.png" alt="Alt text"><br>在房价这个例子中，我们给了一系列房子的数据，给定了数据集中每个样本的正确价格，即它们的实际售价来运用学习算法，算出更多的答案，这些答案落在一个连续的区间上，所以看作是回归问题。可以看到图中，我们采用<strong>直线</strong>和二次方程的<strong>曲线</strong>来拟合数据。在这个过程中，我们采用了不同的学习算法，当然有一个会显得更加合理，我们先不在此做深入讨论。  </p>
+<p><strong>分类问题</strong>：在分类问题中，我们试着在一些离散的输出中来预测结果。换句话说，我们试着将输入变量映射到离散的分类里。如：推测乳腺肿瘤良性与否（如下图）<br><img src="/images/breast_cancer.png" alt="Alt text"><br>在推测乳腺肿瘤良性与否的例子中，我们给出了肿瘤的大小（横轴）和它们所对应是否为良性的正确答案（纵轴），用以运用学习算法来算出更多的答案，这些答案会落在两个分类里，分别表示恶性肿瘤和良性肿瘤。可以看到图中分类一共只有两类，但在实际中，分类问题的输出可能并不只有两个值。比如说存在着三种乳腺癌，因为我们希望分成三类，所以我们的预测值就会达到三个。</p>
+<p>综上所述，回归问题和分类问题的主要区别在与输出是连续还是离散。而监督学习中是通过一组样本及它们所对应的“正确答案”来对数据进行映射处理，从而对数据进行预测得到一段连续或是离散的输出。</p>
 </span>
       
     </div>
@@ -292,7 +288,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/Machine-Learning/" rel="tag">#Machine Learning</a>
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
           
         </div>
       
@@ -301,13 +299,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/20/Windows-Application-Development/" rel="prev">Windows Application Development (1)</a>
+              <a href="/2017/05/05/Machine-Learning-note-1/" rel="prev">Machine Learning课程笔记(1)</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/09/30/birth/" rel="next">Birth</a>
             
           </div>
         </div>
@@ -355,8 +351,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/09/28/Thinking-in-Java/"
-                   data-title="Thinking in Java" data-url="http://weirdforce.com/2015/09/28/Thinking-in-Java/">
+              <div class="ds-thread" data-thread-key="2017/05/05/Machine-Learning-note-2/"
+                   data-title="Machine-Learning课程笔记(2)" data-url="http://weirdforce.com/2017/05/05/Machine-Learning-note-2/">
               </div>
             
           </div>
@@ -469,7 +465,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#阅读《Thinking_in_Java》后记录的一些笔记"><span class="nav-number">1.</span> <span class="nav-text">阅读《Thinking in Java》后记录的一些笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、对象导论"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、对象导论</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习是什么？"><span class="nav-number">1.</span> <span class="nav-text">监督学习是什么？</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

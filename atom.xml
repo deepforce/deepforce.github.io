@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-05-05T09:23:16.000Z</updated>
+  <updated>2017-05-06T03:43:31.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -13,6 +13,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Machine-Learning课程笔记(2)]]></title>
+    <link href="http://weirdforce.com/2017/05/05/Machine-Learning-note-2/"/>
+    <id>http://weirdforce.com/2017/05/05/Machine-Learning-note-2/</id>
+    <published>2017-05-05T11:12:11.000Z</published>
+    <updated>2017-05-06T03:43:31.000Z</updated>
+    <content type="html"><![CDATA[<p>本篇总结监督学习。<br><a id="more"></a></p>
+<h3 id="监督学习是什么？">监督学习是什么？</h3><p><strong>监督学习指的是我们获得一个数据集，看作输入，同时我们知道正确的答案，看作输出。认为输入和输出之间存在一定的关系。</strong><br>监督学习被分成了两类问题：</p>
+<blockquote>
+<ol>
+<li><strong>回归问题(Regression)</strong></li>
+<li><strong>分类问题(Classification)</strong></li>
+</ol>
+</blockquote>
+<p><strong>回归问题</strong>：在回归问题中，我们试着在一段连续的输出中预测结果。即意味着我们试着将输入变量映射到某些连续函数上。如：预测房价（如下图）。<br><img src="/images/predict_house_price.png" alt="Alt text"><br>在房价这个例子中，我们给了一系列房子的数据，给定了数据集中每个样本的正确价格，即它们的实际售价来运用学习算法，算出更多的答案，这些答案落在一个连续的区间上，所以看作是回归问题。可以看到图中，我们采用<strong>直线</strong>和二次方程的<strong>曲线</strong>来拟合数据。在这个过程中，我们采用了不同的学习算法，当然有一个会显得更加合理，我们先不在此做深入讨论。  </p>
+<p><strong>分类问题</strong>：在分类问题中，我们试着在一些离散的输出中来预测结果。换句话说，我们试着将输入变量映射到离散的分类里。如：推测乳腺肿瘤良性与否（如下图）<br><img src="/images/breast_cancer.png" alt="Alt text"><br>在推测乳腺肿瘤良性与否的例子中，我们给出了肿瘤的大小（横轴）和它们所对应是否为良性的正确答案（纵轴），用以运用学习算法来算出更多的答案，这些答案会落在两个分类里，分别表示恶性肿瘤和良性肿瘤。可以看到图中分类一共只有两类，但在实际中，分类问题的输出可能并不只有两个值。比如说存在着三种乳腺癌，因为我们希望分成三类，所以我们的预测值就会达到三个。</p>
+<p>综上所述，回归问题和分类问题的主要区别在与输出是连续还是离散。而监督学习中是通过一组样本及它们所对应的“正确答案”来对数据进行映射处理，从而对数据进行预测得到一段连续或是离散的输出。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本篇总结监督学习。<br>]]>
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://weirdforce.com/tags/Machine-Learning/"/>
+    
+      <category term="机器学习" scheme="http://weirdforce.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Machine Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Machine Learning课程笔记(1)]]></title>
@@ -46,7 +77,7 @@
     <link href="http://weirdforce.com/2017/05/05/Machine-Learning/"/>
     <id>http://weirdforce.com/2017/05/05/Machine-Learning/</id>
     <published>2017-05-05T04:55:23.000Z</published>
-    <updated>2017-05-05T08:53:21.000Z</updated>
+    <updated>2017-05-05T09:22:49.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Multivariate_Linear_Regression">Multivariate Linear Regression</h2><a id="more"></a>
 <ol>
 <li><p>Multiple Features<br> 区别于单一特征向量，当存在多个特征向量去描述一个函数时，需要利用到多元特征向量去表示。多元特征向量的表示方法如下：<br> <img src="/images/Multiple_Features.png" alt="Alt text"><br> 多元特征向量所表示的函数如下图所示：<br> <img src="/images/Multiple_Function.png" alt="Alt text"><br> 上式中，可以假设存在一个X0＝1来化简式子，得到下图。<br> <img src="/images/Multiple_Function_1.png" alt="Alt text"></p>
@@ -1151,113 +1182,6 @@ count1=<span class="number">0</span>;
     <summary type="html">
     <![CDATA[<p>今天AC了另一道比较有趣的题目～</p>
 <p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1050">题目</a></strong></p>]]>
-    
-    </summary>
-    
-      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
-    
-      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
-    
-      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[FatMouse' Trade]]></title>
-    <link href="http://weirdforce.com/2016/03/07/FatMouse_Trade/"/>
-    <id>http://weirdforce.com/2016/03/07/FatMouse_Trade/</id>
-    <published>2016-03-06T16:12:49.000Z</published>
-    <updated>2017-04-27T17:37:10.000Z</updated>
-    <content type="html"><![CDATA[<p>今天重新翻出了HDU的ACM Steps中的题目做了一下，发现一道比较简单的题目。</p>
-<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1009" target="_blank" rel="external">题目</a></strong></p>
-<a id="more"></a>
-<p>题目的思路大致可以分为两个部分：</p>
-<p>第一部分：将每个房间中JavaBeans和cat food的比例（精确到小数点后三位）分别求出来并存在一个数组之中，并将这个数组进行从大到小的排序。</p>
-<p>第二部分：对排序好的数组从大到小，依次累加其对应的JavaBeans的数量直至cat food不足以付出一个房间的cat food要求，再用之前的比例进行计算，统计所得到的所有JavaBeans的数量。</p>
-<p>代码如下：</p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span>
-<span class="keyword">struct</span> c{
-    <span class="keyword">int</span> j;
-<span class="keyword">int</span> u;
-<span class="keyword">double</span> k;
-    };
-    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">struct</span> c *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span>
-</span>{
-    <span class="keyword">if</span>(left &gt;= right)
-        <span class="keyword">return</span>;
-    <span class="keyword">int</span> x = left;
-    <span class="keyword">int</span> y = right;
-    <span class="keyword">double</span> key = a[left].k;
-    <span class="keyword">double</span> key1 = a[left].j;
-    <span class="keyword">double</span> key2 = a[left].u;
-
-    <span class="keyword">while</span>(x&lt;y)
-    {
-        <span class="keyword">while</span>(x&lt;y &amp;&amp; key &lt;= a[y].k)
-        {
-            y--;
-        }
-
-        a[x].j=a[y].j;
-           a[x].u=a[y].u;
-        a[x].k=a[y].k;
-
-        <span class="keyword">while</span>(x&lt;y &amp;&amp; key &gt;=a[x].k)
-        {
-            x++;
-        }   
-
-        a[y].j=a[x].j;
-        a[y].u=a[x].u;
-        a[y].k=a[x].k;
-    }
-
-    a[x].j = key1;
-    a[x].u = key2;
-    a[x].k = key;
-    sort(a, left, x - <span class="number">1</span>);
-    sort(a, x+<span class="number">1</span>, right);
-
-}
-
-<span class="keyword">struct</span> c f[<span class="number">1000</span>];
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
-</span>{
-    <span class="keyword">int</span> m,n,i;
-    <span class="keyword">int</span> a,b;
-    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;m,&amp;n)!=EOF &amp;&amp; m!=-<span class="number">1</span> &amp;&amp; n!=-<span class="number">1</span>)
-    {
-        <span class="keyword">double</span> count=<span class="number">0</span>;
-        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)
-        {
-        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;a,&amp;b);
-        f[i].j=a;
-        f[i].u=b;
-        f[i].k=(<span class="keyword">double</span>)a/b;
-        }
-        sort(f,<span class="number">1</span>,n);
-        <span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)
-        {
-            <span class="keyword">if</span>(m &gt;= f[i].u)
-                count+=f[i].j;
-            <span class="keyword">else</span>
-            {    
-                count=count+f[i].k*m;
-                <span class="keyword">break</span>;
-            }
-            m-=f[i].u;
-        }
-        <span class="built_in">printf</span>(<span class="string">"%.3f\n"</span>, count);
-    }
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>仔细想想，应该还有更简便的方法，期待下次能更新～</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>今天重新翻出了HDU的ACM Steps中的题目做了一下，发现一道比较简单的题目。</p>
-<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1009">题目</a></strong></p>]]>
     
     </summary>
     
