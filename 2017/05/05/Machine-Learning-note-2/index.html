@@ -41,19 +41,21 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="本篇总结监督学习。">
+<meta name="description" content="本篇总结监督学习和无监督学习。">
 <meta name="keywords" content="Machine Learning,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Machine-Learning课程笔记(2)">
 <meta property="og:url" content="http://weirdforce.com/2017/05/05/Machine-Learning-note-2/index.html">
 <meta property="og:site_name" content="Zack's Park">
-<meta property="og:description" content="本篇总结监督学习。">
+<meta property="og:description" content="本篇总结监督学习和无监督学习。">
 <meta property="og:image" content="http://weirdforce.com/images/predict_house_price.png">
 <meta property="og:image" content="http://weirdforce.com/images/breast_cancer.png">
-<meta property="og:updated_time" content="2017-05-06T03:43:31.000Z">
+<meta property="og:image" content="http://weirdforce.com/images/Genes.png">
+<meta property="og:image" content="http://weirdforce.com/images/Cocktail_party.png">
+<meta property="og:updated_time" content="2017-05-06T15:47:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine-Learning课程笔记(2)">
-<meta name="twitter:description" content="本篇总结监督学习。">
+<meta name="twitter:description" content="本篇总结监督学习和无监督学习。">
 <meta name="twitter:image" content="http://weirdforce.com/images/predict_house_price.png">
 
 
@@ -269,7 +271,7 @@
       
 
       
-        <span itemprop="articleBody"><p>本篇总结监督学习。<br><a id="more"></a></p>
+        <span itemprop="articleBody"><p>本篇总结监督学习和无监督学习。<br><a id="more"></a></p>
 <h3 id="监督学习是什么？">监督学习是什么？</h3><p><strong>监督学习指的是我们获得一个数据集，看作输入，同时我们知道正确的答案，看作输出。认为输入和输出之间存在一定的关系。</strong><br>监督学习被分成了两类问题：</p>
 <blockquote>
 <ol>
@@ -280,6 +282,15 @@
 <p><strong>回归问题</strong>：在回归问题中，我们试着在一段连续的输出中预测结果。即意味着我们试着将输入变量映射到某些连续函数上。如：预测房价（如下图）。<br><img src="/images/predict_house_price.png" alt="Alt text"><br>在房价这个例子中，我们给了一系列房子的数据，给定了数据集中每个样本的正确价格，即它们的实际售价来运用学习算法，算出更多的答案，这些答案落在一个连续的区间上，所以看作是回归问题。可以看到图中，我们采用<strong>直线</strong>和二次方程的<strong>曲线</strong>来拟合数据。在这个过程中，我们采用了不同的学习算法，当然有一个会显得更加合理，我们先不在此做深入讨论。  </p>
 <p><strong>分类问题</strong>：在分类问题中，我们试着在一些离散的输出中来预测结果。换句话说，我们试着将输入变量映射到离散的分类里。如：推测乳腺肿瘤良性与否（如下图）<br><img src="/images/breast_cancer.png" alt="Alt text"><br>在推测乳腺肿瘤良性与否的例子中，我们给出了肿瘤的大小（横轴）和它们所对应是否为良性的正确答案（纵轴），用以运用学习算法来算出更多的答案，这些答案会落在两个分类里，分别表示恶性肿瘤和良性肿瘤。可以看到图中分类一共只有两类，但在实际中，分类问题的输出可能并不只有两个值。比如说存在着三种乳腺癌，因为我们希望分成三类，所以我们的预测值就会达到三个。</p>
 <p>综上所述，回归问题和分类问题的主要区别在与输出是连续还是离散。而监督学习中是通过一组样本及它们所对应的“正确答案”来对数据进行映射处理，从而对数据进行预测得到一段连续或是离散的输出。</p>
+<h3 id="无监督学习是什么?">无监督学习是什么?</h3><p><strong>无监督学习中指的是我们获得一个数据集，看作输入，但我们不知道如何操作数据集，无监督学习的本质是在数据中寻找一些结构。</strong><br>其中无监督学习主要分为了以下问题：</p>
+<blockquote>
+<ol>
+<li><strong>聚类问题</strong></li>
+<li><strong>鸡尾酒宴问题</strong></li>
+</ol>
+</blockquote>
+<p><strong>聚类问题</strong>：在没有告知算法标签信息的情况下，通过自动地寻找数据集中的结构，让数据自动地聚类到某些类别当中。如：谷歌新闻、基因聚类（如下图）等。<br><img src="/images/Genes.png" alt="Alt text"><br>在基因聚类这个例子中，输入是一组不同的个体，我们通过对个体在基因层面上数据的分析即是否表达了某些特定的基因，运行聚类算法，将个体聚类到不同的类别当中。  </p>
+<p><strong>鸡尾酒宴问题</strong>：在宴会房间中，将声音重叠的数据作为输入，运行无监督学习算法，寻找其中的结构，将各种声音相互剥离开来。（如下图）<br><img src="/images/Cocktail_party.png" alt="Alt text"><br>这个例子中是通过了放置两个麦克风，离说话人的距离不同的每个麦克风记录下不同的声音。虽然是同样的说话的两个说话人，听起来像是两份录音被叠加在一起。但算法还是会区分出两个音源。（详细可看维基百科<strong><a href="https://en.wikipedia.org/wiki/Cocktail_party_effect" target="_blank" rel="external">Cocktail party effect</a></strong>)</p>
 </span>
       
     </div>
@@ -304,6 +315,8 @@
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/08/Machine-Learning-note-3/" rel="next">Machine Learning课程笔记(3)</a>
             
           </div>
         </div>
@@ -392,7 +405,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -465,7 +478,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习是什么？"><span class="nav-number">1.</span> <span class="nav-text">监督学习是什么？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习是什么？"><span class="nav-number">1.</span> <span class="nav-text">监督学习是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无监督学习是什么?"><span class="nav-number">2.</span> <span class="nav-text">无监督学习是什么?</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

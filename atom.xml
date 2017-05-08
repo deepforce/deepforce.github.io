@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-05-06T03:43:31.000Z</updated>
+  <updated>2017-05-08T09:03:23.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -15,12 +15,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Machine Learning课程笔记(3)]]></title>
+    <link href="http://weirdforce.com/2017/05/08/Machine-Learning-note-3/"/>
+    <id>http://weirdforce.com/2017/05/08/Machine-Learning-note-3/</id>
+    <published>2017-05-08T08:13:02.000Z</published>
+    <updated>2017-05-08T09:03:23.000Z</updated>
+    <content type="html"><![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br><a id="more"></a></p>
+<h2 id="单变量的线性回归(Linear_Regression_with_One_Variable)">单变量的线性回归(Linear Regression with One Variable)</h2><p>其中，这里将讲解<strong>单变量的线性回归(Linear Regression with One Variable)</strong>。<br>首先，我们来看回之前总结过的预测房价的例子。见下图。<br><img src="/images/house_price.png" alt="Alt text"><br>如图中所说，这里被归为<strong>监督学习</strong>的原因是，我们对每个数据都给出了“正确的答案”。而称为<strong>回归问题</strong>是因为我们能够根据之前的数据预测出一个准确的输出值，即房屋价格。<br>一般来说，在监督学习中，我们有一个数据集，这个数据集被称为<strong>训练集</strong>。以预测房价为例，见下图。<br><img src="/images/house_train.png" alt="Alt text"></p>
+<p>在回归问题中，我们对一些描述的标记如下所示：</p>
+<blockquote>
+<p>m 代表训练集中实例的数量。<br>x 代表特征／输入变量<br>y 代表目标变量／输出变量<br>(x,y) 代表训练集中的实例<br>($x^{i}$,$y^{i}$) 代表第 i 个观察实例<br>h 代表学习算法的解决方案或函数也称为假设（hypothesis)</p>
+</blockquote>
+<h3 id="模型表示(Model_Representation)">模型表示(Model Representation)</h3><p><img src="/images/model.png" alt="Alt text"><br>上图描述了一个监督学习算法的工作方式。同样举房屋例子来说，我们通过将训练集（即房屋价格及它们所对应的特征数据）作为输入投入学习算法中，学习算法工作后，会输出一个函数，记作h(即上文代表的hypothesis)。得到h之后，我们可以通过输入房屋的特征数据（即x值），输出房屋的价格（即y值）。因此，我们可以看出h实则是一个从x到y的映射。</p>
+<p>h的表示：<br><strong>一般来说，在单变量线性回归问题当中，我们将h表示为：</strong><br>$$h<em>{\theta}(x) = \theta</em>{0} + \theta_{1}x$$</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br>]]>
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://weirdforce.com/tags/Machine-Learning/"/>
+    
+      <category term="机器学习" scheme="http://weirdforce.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Machine Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Machine-Learning课程笔记(2)]]></title>
     <link href="http://weirdforce.com/2017/05/05/Machine-Learning-note-2/"/>
     <id>http://weirdforce.com/2017/05/05/Machine-Learning-note-2/</id>
     <published>2017-05-05T11:12:11.000Z</published>
-    <updated>2017-05-06T03:43:31.000Z</updated>
-    <content type="html"><![CDATA[<p>本篇总结监督学习。<br><a id="more"></a></p>
+    <updated>2017-05-06T15:47:54.000Z</updated>
+    <content type="html"><![CDATA[<p>本篇总结监督学习和无监督学习。<br><a id="more"></a></p>
 <h3 id="监督学习是什么？">监督学习是什么？</h3><p><strong>监督学习指的是我们获得一个数据集，看作输入，同时我们知道正确的答案，看作输出。认为输入和输出之间存在一定的关系。</strong><br>监督学习被分成了两类问题：</p>
 <blockquote>
 <ol>
@@ -31,9 +59,18 @@
 <p><strong>回归问题</strong>：在回归问题中，我们试着在一段连续的输出中预测结果。即意味着我们试着将输入变量映射到某些连续函数上。如：预测房价（如下图）。<br><img src="/images/predict_house_price.png" alt="Alt text"><br>在房价这个例子中，我们给了一系列房子的数据，给定了数据集中每个样本的正确价格，即它们的实际售价来运用学习算法，算出更多的答案，这些答案落在一个连续的区间上，所以看作是回归问题。可以看到图中，我们采用<strong>直线</strong>和二次方程的<strong>曲线</strong>来拟合数据。在这个过程中，我们采用了不同的学习算法，当然有一个会显得更加合理，我们先不在此做深入讨论。  </p>
 <p><strong>分类问题</strong>：在分类问题中，我们试着在一些离散的输出中来预测结果。换句话说，我们试着将输入变量映射到离散的分类里。如：推测乳腺肿瘤良性与否（如下图）<br><img src="/images/breast_cancer.png" alt="Alt text"><br>在推测乳腺肿瘤良性与否的例子中，我们给出了肿瘤的大小（横轴）和它们所对应是否为良性的正确答案（纵轴），用以运用学习算法来算出更多的答案，这些答案会落在两个分类里，分别表示恶性肿瘤和良性肿瘤。可以看到图中分类一共只有两类，但在实际中，分类问题的输出可能并不只有两个值。比如说存在着三种乳腺癌，因为我们希望分成三类，所以我们的预测值就会达到三个。</p>
 <p>综上所述，回归问题和分类问题的主要区别在与输出是连续还是离散。而监督学习中是通过一组样本及它们所对应的“正确答案”来对数据进行映射处理，从而对数据进行预测得到一段连续或是离散的输出。</p>
+<h3 id="无监督学习是什么?">无监督学习是什么?</h3><p><strong>无监督学习中指的是我们获得一个数据集，看作输入，但我们不知道如何操作数据集，无监督学习的本质是在数据中寻找一些结构。</strong><br>其中无监督学习主要分为了以下问题：</p>
+<blockquote>
+<ol>
+<li><strong>聚类问题</strong></li>
+<li><strong>鸡尾酒宴问题</strong></li>
+</ol>
+</blockquote>
+<p><strong>聚类问题</strong>：在没有告知算法标签信息的情况下，通过自动地寻找数据集中的结构，让数据自动地聚类到某些类别当中。如：谷歌新闻、基因聚类（如下图）等。<br><img src="/images/Genes.png" alt="Alt text"><br>在基因聚类这个例子中，输入是一组不同的个体，我们通过对个体在基因层面上数据的分析即是否表达了某些特定的基因，运行聚类算法，将个体聚类到不同的类别当中。  </p>
+<p><strong>鸡尾酒宴问题</strong>：在宴会房间中，将声音重叠的数据作为输入，运行无监督学习算法，寻找其中的结构，将各种声音相互剥离开来。（如下图）<br><img src="/images/Cocktail_party.png" alt="Alt text"><br>这个例子中是通过了放置两个麦克风，离说话人的距离不同的每个麦克风记录下不同的声音。虽然是同样的说话的两个说话人，听起来像是两份录音被叠加在一起。但算法还是会区分出两个音源。（详细可看维基百科<strong><a href="https://en.wikipedia.org/wiki/Cocktail_party_effect" target="_blank" rel="external">Cocktail party effect</a></strong>)</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>本篇总结监督学习。<br>]]>
+    <![CDATA[<p>本篇总结监督学习和无监督学习。<br>]]>
     
     </summary>
     
@@ -77,7 +114,7 @@
     <link href="http://weirdforce.com/2017/05/05/Machine-Learning/"/>
     <id>http://weirdforce.com/2017/05/05/Machine-Learning/</id>
     <published>2017-05-05T04:55:23.000Z</published>
-    <updated>2017-05-05T09:22:49.000Z</updated>
+    <updated>2017-05-08T08:53:21.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Multivariate_Linear_Regression">Multivariate Linear Regression</h2><a id="more"></a>
 <ol>
 <li><p>Multiple Features<br> 区别于单一特征向量，当存在多个特征向量去描述一个函数时，需要利用到多元特征向量去表示。多元特征向量的表示方法如下：<br> <img src="/images/Multiple_Features.png" alt="Alt text"><br> 多元特征向量所表示的函数如下图所示：<br> <img src="/images/Multiple_Function.png" alt="Alt text"><br> 上式中，可以假设存在一个X0＝1来化简式子，得到下图。<br> <img src="/images/Multiple_Function_1.png" alt="Alt text"></p>
@@ -103,7 +140,7 @@
     
       <category term="Stanford" scheme="http://weirdforce.com/tags/Stanford/"/>
     
-      <category term="Machine-Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
     
   </entry>
   
@@ -1110,78 +1147,6 @@ count1=<span class="number">0</span>;
     <summary type="html">
     <![CDATA[<p>好的，今天继续AC了一道比较简单的贪心题目。</p>
 <p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=2037">题目</a></strong><br>]]>
-    
-    </summary>
-    
-      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
-    
-      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
-    
-      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Moving Tables]]></title>
-    <link href="http://weirdforce.com/2016/03/09/Moving-Tables/"/>
-    <id>http://weirdforce.com/2016/03/09/Moving-Tables/</id>
-    <published>2016-03-08T16:12:49.000Z</published>
-    <updated>2017-04-27T18:24:04.000Z</updated>
-    <content type="html"><![CDATA[<p>今天AC了另一道比较有趣的题目～</p>
-<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1050" target="_blank" rel="external">题目</a></strong></p>
-<a id="more"></a>
-<p>房间结构如下:<br><img src="/images/1050-1.gif" alt="Alt text"></p>
-<p>搬桌子规则如下：<br><img src="/images/1050-2.gif" alt="Alt text"></p>
-<p>解题思路：<br>首先，可以先仔细地看题，我们可以从题目中看出，这是一个400个房间，奇数号房间和偶数号房间相对，走廊只允许通过一张桌子且将桌子从一间房搬到另一间房间所花的时间为10mins。<br>仔细考虑题目，我们可以知道每两个房间（奇房间和相对应的偶房间）共享一块走廊区域，于是可以很清晰地将400个房间划分为200组。<br>根据题意，我们需要求出最小的搬运时间。这里需要注意的是，我们如果使用了集合区间的包含关系来划分各个房间时，会掉进一个误区。在这里，我们很清楚地知道，无交集的两个集合可以看作是两个房间互不影响。那么是不是只要不断地检测互不影响的组数，将其归为一类，就能知道最短的时间呢？<br>答案是否定的，在这里，我们可以假设，有三张桌子要进行搬运，其中分别为：1号搬到10号，11号搬到13号，14号搬到29号。显然，1-10和11-13互不影响，也同14－29互不影响，而11-13却是和14-29存在影响的。当我们将它们归为一组，那么答案显然不是题目要求的“最短”所需时间。所以这种方法并不理想。（卡了我挺久。。。）<br>因此，我们将搬桌子这个过程进行一定地抽象，可以看作是进行两个组之间地连线。那么，显然，当存在有两条线相交时，他们会相互影响，导致时间增加。那么此问题就可以简化为求出最多有多少条线相交于同一点（即同一块走廊区域）。</p>
-<p>代码如下：</p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
-<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
-<span class="function"><span class="keyword">void</span> <span class="title">max1</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span>
-</span>{
-    <span class="keyword">int</span> k;
-    <span class="keyword">if</span> (a&gt;b)
-    {
-        k=a;
-        a=b;
-        b=k;
-    }
-}
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
-</span>{
-    <span class="keyword">int</span> t,n,flag,s,u,maxx;
-    <span class="keyword">int</span> count1;
-    <span class="built_in">cin</span>&gt;&gt;t;
-    <span class="keyword">while</span>(t--)
-    {
-    maxx=<span class="number">0</span>;
-    <span class="keyword">int</span> x[<span class="number">201</span>]={<span class="number">0</span>};
-    <span class="built_in">cin</span>&gt;&gt;n;
-    <span class="keyword">while</span>(n--)
-    {
-        <span class="built_in">cin</span>&gt;&gt;s&gt;&gt;u;
-        max1(s,u);
-        s=(s+<span class="number">1</span>)/<span class="number">2</span>;
-        u=(u+<span class="number">1</span>)/<span class="number">2</span>;
-        <span class="keyword">for</span>(<span class="keyword">int</span> j=s;j&lt;=u;j++)
-                 x[j]++;
-    }
-
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">200</span>;i++)
-    {
-        <span class="keyword">if</span>(maxx &lt; x[i])
-                maxx=x[i];
-    }
-    count1=<span class="number">10</span>*maxx;
-    <span class="built_in">cout</span>&lt;&lt;count1&lt;&lt;endl;
-    }
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>今天AC了另一道比较有趣的题目～</p>
-<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1050">题目</a></strong></p>]]>
     
     </summary>
     
