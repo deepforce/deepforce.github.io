@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-05-08T09:15:16.000Z</updated>
+  <updated>2017-05-09T10:40:06.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://weirdforce.com/2017/05/08/Machine-Learning-note-3/"/>
     <id>http://weirdforce.com/2017/05/08/Machine-Learning-note-3/</id>
     <published>2017-05-08T08:13:02.000Z</published>
-    <updated>2017-05-08T09:15:16.000Z</updated>
+    <updated>2017-05-09T10:40:06.000Z</updated>
     <content type="html"><![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br><a id="more"></a></p>
 <h2 id="单变量的线性回归(Linear_Regression_with_One_Variable)">单变量的线性回归(Linear Regression with One Variable)</h2><p>其中，这里将讲解<strong>单变量的线性回归(Linear Regression with One Variable)</strong>。<br>首先，我们来看回之前总结过的预测房价的例子。见下图。<br><img src="/images/house_price.png" alt="Alt text"><br>如图中所说，这里被归为<strong>监督学习</strong>的原因是，我们对每个数据都给出了“正确的答案”。而称为<strong>回归问题</strong>是因为我们能够根据之前的数据预测出一个准确的输出值，即房屋价格。<br>一般来说，在监督学习中，我们有一个数据集，这个数据集被称为<strong>训练集</strong>。以预测房价为例，见下图。<br><img src="/images/house_train.png" alt="Alt text"></p>
 <p>在回归问题中，我们对一些描述的标记如下所示：</p>
@@ -28,6 +28,12 @@
 </blockquote>
 <h3 id="模型表示(Model_Representation)">模型表示(Model Representation)</h3><p><img src="/images/model.png" alt="Alt text"><br>上图描述了一个监督学习算法的工作方式。同样举房屋例子来说，我们通过将训练集（即房屋价格及它们所对应的特征数据）作为输入投入学习算法中，学习算法工作后，会输出一个函数，记作h(即上文代表的hypothesis)。得到h之后，我们可以通过输入房屋的特征数据（即x值），输出房屋的价格（即y值）。因此，我们可以看出h实则是一个从x到y的映射。</p>
 <p>h的表示：<br><strong>一般来说，在单变量线性回归问题当中，我们将h表示为：</strong><br>$$h_{\theta}(x)=\theta_0+\theta_1x$$</p>
+<h3 id="代价函数(Cost_Function)">代价函数(Cost Function)</h3><p>上面提到了我们用来预测的函数是$h_{\theta}(x)=\theta_0+\theta_1x$的形式。其中$\theta_0$和$\theta_1$是这个模型的<strong>参数</strong>。在这里分别为直线的斜率和在y轴上的截距。我们需要做的便是要为这个模型选择合适的参数，把直线和数据尽可能地相拟合起来。如下图所示。<br><img src="/images/Cost_function_1.png" alt="Alt text"></p>
+<p>这时，我们需要引入一个评估指标来衡量我们得到的直线预测得到的值和我们的训练集数据真实值之间的差距：<strong>建模误差(modeling error)</strong>。<br><img src="/images/modeling_error.png" alt="Alt text"></p>
+<p>如上图所示，当我们通过将各个数据中的建模误差的平方求和之后，就能构建<strong>代价函数</strong>:<br>$$J(\theta_0, \theta_1)=\frac{1}{2m} \sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2$$</p>
+<p>得到代价函数之后，我们的目标就转为了找到$\theta_0$和$\theta_1$的取值能够使得代价函数取到最小。如下图所示。<br><img src="/images/cost_function_2.png" alt="Alt text"></p>
+<p>我们还可以通过等高线图来进行分析：<br><img src="/images/min_cost_function.png" alt="Alt text"><br>可以看出，在三维空间里，存在着使得$J(\theta_0,\theta_1)$最小的点。</p>
+<p><strong>一般来说，代价函数被称为平方误差函数。对于回归问题，是常用的合理的选择。</strong></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br>]]>
