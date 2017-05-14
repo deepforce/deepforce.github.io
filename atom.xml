@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-05-09T10:40:06.000Z</updated>
+  <updated>2017-05-14T14:16:08.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -15,11 +15,74 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[LeetCode#8 String to Integer (atoi)]]></title>
+    <link href="http://weirdforce.com/2017/05/12/leetcode-8-String-to-Integer-atoi/"/>
+    <id>http://weirdforce.com/2017/05/12/leetcode-8-String-to-Integer-atoi/</id>
+    <published>2017-05-12T11:18:38.000Z</published>
+    <updated>2017-05-14T14:16:08.000Z</updated>
+    <content type="html"><![CDATA[<p>今天刷了LeetCode的一道题。这题看上起很简单，但实现起来的逻辑比较复杂。<br><a id="more"></a></p>
+<p><strong>题目要求：</strong></p>
+<blockquote>
+<ol>
+<li>输入一个字符序列，在这个序列中寻找第一个不为空格的字符。从这个字符开始，读入一个可选的正负号，然后读入一串数字，将这些字符转换成一个数值。</li>
+<li>字符串中能够包含额外的字符跟在形成数值的字符后面，这些字符需要被忽略并且不影响这个函数的效果。</li>
+<li>如果遇到的第一个不为空格的字符不是一个有效的数字或者并不存在这样的一个字符序列可以转换为数值，则不必进行转换。（因为有可能<strong>字符串为空</strong>或者<strong>字符串只包含空格</strong>）。 </li>
+<li>如果转换没有进行，则返回零值。如果转换后的数值超过了int的表示范围，则返回int范围的临界值INT_MAX (2147483647)和INT_MIN (-2147483648)。</li>
+</ol>
+</blockquote>
+<p><strong>思路：</strong></p>
+<ol>
+<li>C++中的string类型里，存在着find_first_not_of这个函数，它能帮助我们找到第一个不为某个字符的位置。</li>
+<li>找到这个位置后，后面判断是否存在着正负号。用一个标记来表示符号的情况。</li>
+<li>然后对字符串中的数字字符进行处理，直到碰到非数字字符为止，把处理得到的数值储存起来。</li>
+<li>对于没有转换的字符串返回0。对于超出int范围的值应该返回临界值。</li>
+</ol>
+<p><strong>代码如下：</strong></p>
+<pre><code>class <span class="type">Solution</span> {
+public:
+    <span class="type">int</span> myAtoi(<span class="type">string</span> str) {
+        long <span class="literal">result</span> = <span class="number">0</span>;
+        <span class="type">int</span> flag = <span class="number">1</span>;
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; str.length();) {
+                i = str.find_first_not_of(' ');
+                <span class="keyword">if</span> (str[i] == '-' || str[i] == '+')
+                    flag = (str[i++] == '-') ? -<span class="number">1</span> : <span class="number">1</span>;
+                <span class="keyword">while</span>(str[i] &lt;= '<span class="number">9</span>' &amp;&amp; str[i] &gt;= '<span class="number">0</span>') {
+                    cout &lt;&lt; str[i] &lt;&lt; endl;
+                    <span class="literal">result</span> = <span class="literal">result</span> * <span class="number">10</span> + (str[i++] - '<span class="number">0</span>');
+                    cout &lt;&lt; <span class="literal">result</span> &lt;&lt;endl;
+                    <span class="keyword">if</span> (<span class="literal">result</span> * flag &gt;= <span class="type">INT_MAX</span>)
+                        <span class="keyword">return</span> <span class="type">INT_MAX</span>;
+                    <span class="keyword">if</span> (<span class="literal">result</span> * flag &lt;= <span class="type">INT_MIN</span>) 
+                        <span class="keyword">return</span> <span class="type">INT_MIN</span>;
+                }
+                <span class="keyword">return</span> <span class="literal">result</span> * flag;
+        }
+        <span class="keyword">return</span> <span class="number">0</span>;
+    }
+};
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天刷了LeetCode的一道题。这题看上起很简单，但实现起来的逻辑比较复杂。<br>]]>
+    
+    </summary>
+    
+      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="LeetCode" scheme="http://weirdforce.com/tags/LeetCode/"/>
+    
+      <category term="Algorithm" scheme="http://weirdforce.com/tags/Algorithm/"/>
+    
+      <category term="LeetCode" scheme="http://weirdforce.com/categories/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Machine Learning课程笔记(3)]]></title>
     <link href="http://weirdforce.com/2017/05/08/Machine-Learning-note-3/"/>
     <id>http://weirdforce.com/2017/05/08/Machine-Learning-note-3/</id>
     <published>2017-05-08T08:13:02.000Z</published>
-    <updated>2017-05-09T10:40:06.000Z</updated>
+    <updated>2017-05-10T13:30:31.000Z</updated>
     <content type="html"><![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br><a id="more"></a></p>
 <h2 id="单变量的线性回归(Linear_Regression_with_One_Variable)">单变量的线性回归(Linear Regression with One Variable)</h2><p>其中，这里将讲解<strong>单变量的线性回归(Linear Regression with One Variable)</strong>。<br>首先，我们来看回之前总结过的预测房价的例子。见下图。<br><img src="/images/house_price.png" alt="Alt text"><br>如图中所说，这里被归为<strong>监督学习</strong>的原因是，我们对每个数据都给出了“正确的答案”。而称为<strong>回归问题</strong>是因为我们能够根据之前的数据预测出一个准确的输出值，即房屋价格。<br>一般来说，在监督学习中，我们有一个数据集，这个数据集被称为<strong>训练集</strong>。以预测房价为例，见下图。<br><img src="/images/house_train.png" alt="Alt text"></p>
 <p>在回归问题中，我们对一些描述的标记如下所示：</p>
@@ -34,6 +97,11 @@
 <p>得到代价函数之后，我们的目标就转为了找到$\theta_0$和$\theta_1$的取值能够使得代价函数取到最小。如下图所示。<br><img src="/images/cost_function_2.png" alt="Alt text"></p>
 <p>我们还可以通过等高线图来进行分析：<br><img src="/images/min_cost_function.png" alt="Alt text"><br>可以看出，在三维空间里，存在着使得$J(\theta_0,\theta_1)$最小的点。</p>
 <p><strong>一般来说，代价函数被称为平方误差函数。对于回归问题，是常用的合理的选择。</strong></p>
+<h3 id="梯度下降(Gradient_Descent)">梯度下降(Gradient Descent)</h3><p><strong>梯度下降</strong>指的是一个用来求函数最小值的算法。我们可以使用它求出代价函数$J(\theta_0,\theta_1)$的最小值。</p>
+<p><strong>原理：</strong>通过一开始随机选择的参数组合($\theta_0,\theta_1,…,\theta_n$),计算代价函数，然后在这个过程中寻找下一个能让代价函数值下降最多的参数组合，直到找到一个<strong>局部最小值(local minimum)</strong>。当然，因为并没有将所有的参数组合全部尝试，所以我们不能确定的到的局部最小值就是全局最小值，而选择不同的初始参数组合，可能会找到不同的局部最小值。如下图所示。<br><img src="/images/gradient_descent_theory.png" alt="Alt text"></p>
+<p><strong>算法公式：</strong><br><strong>repeat until convergence { </strong><br>    $$\theta_j:=\theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta)$$<br><strong>}</strong></p>
+<p>其中，<strong>$\alpha$是学习率(learning rate)</strong>，决定了沿着能让代价函数下降程度最大方向的每一个迭代的步伐有多大。</p>
+<p><strong>注意事项：</strong> 在梯度下降算法当中，我们需要更新参数值。而更新的过程必须要做到同时更新所有的参数项。例如，在单变量线性回归问题中我们需要同时更新$\theta_0$和$\theta_1$。如下图所示。<br><img src="/images/update_gradient.png" alt="Alt text"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br>]]>
@@ -1076,83 +1144,6 @@ count1=<span class="number">0</span>;
     <summary type="html">
     <![CDATA[<p>今天AC了一道比较有趣的数学题～</p>
 <p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1046">题目</a> </strong><br>]]>
-    
-    </summary>
-    
-      <category term="ACM" scheme="http://weirdforce.com/tags/ACM/"/>
-    
-      <category term="算法" scheme="http://weirdforce.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="HDU" scheme="http://weirdforce.com/tags/HDU/"/>
-    
-      <category term="ACM" scheme="http://weirdforce.com/categories/ACM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[今年暑假不AC]]></title>
-    <link href="http://weirdforce.com/2016/03/10/jinnianshujiabuAC/"/>
-    <id>http://weirdforce.com/2016/03/10/jinnianshujiabuAC/</id>
-    <published>2016-03-10T03:44:08.000Z</published>
-    <updated>2017-04-28T03:50:50.000Z</updated>
-    <content type="html"><![CDATA[<p>好的，今天继续AC了一道比较简单的贪心题目。</p>
-<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=2037" target="_blank" rel="external">题目</a></strong><br><a id="more"></a><br>题目的思路大致如下：<br>要使得看尽量多的完整的比赛，必须要使节目结束时间尽量早，且要使得下一个节目的开始时间比上一个节目的开始时间要晚。</p>
-<blockquote>
-<ol>
-<li>先将输入的节目单对其结束时间进行由小到大的排序。</li>
-<li>再从排好的节目单由第一个逐步寻找下一个节目开始时间比前一个节目时间晚的节目。并每次更新最后节目的结束时间。在节目单中，从头找到尾。</li>
-<li>每次找到新节目将节目计数器不断递增。</li>
-<li>输出可完整观看的节目总数。</li>
-</ol>
-</blockquote>
-<p>代码如下：</p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
-<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
-</span>{
-    <span class="keyword">int</span> t,count1,s,u,k;
-    <span class="keyword">int</span> a[<span class="number">101</span>];
-    <span class="keyword">int</span> b[<span class="number">101</span>];
-    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;t &amp;&amp; t)
-    {
-    count1=<span class="number">1</span>;
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)
-    {
-        <span class="built_in">cin</span>&gt;&gt;a[i]&gt;&gt;b[i];
-    }
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; (t-<span class="number">1</span>);i++)
-    {
-            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt; (t-<span class="number">1</span>-i);j++)
-        {   
-                 <span class="keyword">if</span>(b[j]&gt;b[j+<span class="number">1</span>])
-                 {
-                     k=b[j+<span class="number">1</span>];
-                     b[j+<span class="number">1</span>]=b[j];
-                     b[j]=k;
-                     k=a[j+<span class="number">1</span>];
-                     a[j+<span class="number">1</span>]=a[j];
-                     a[j]=k;
-                 }    
-        }   
-    }
-    s=a[<span class="number">0</span>];
-   u=b[<span class="number">0</span>];
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;t;i++)
-    {
-        <span class="keyword">if</span>(a[i] &gt;= u)
-        {
-            count1++;
-            u=b[i];
-        }  
-    }
-    <span class="built_in">cout</span>&lt;&lt;count1&lt;&lt;endl;
-    }
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>好的，今天继续AC了一道比较简单的贪心题目。</p>
-<p><strong> 题目链接: <a href="http://acm.hdu.edu.cn/showproblem.php?pid=2037">题目</a></strong><br>]]>
     
     </summary>
     
