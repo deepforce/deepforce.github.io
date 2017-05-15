@@ -41,13 +41,13 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="本篇将总结监督学习中的线性回归算法。">
+<meta name="description" content="本篇将总结监督学习中的线性回归的单变量线性回归。">
 <meta name="keywords" content="Machine Learning,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Machine Learning课程笔记(3)">
 <meta property="og:url" content="http://weirdforce.com/2017/05/08/Machine-Learning-note-3/index.html">
 <meta property="og:site_name" content="Zack's Park">
-<meta property="og:description" content="本篇将总结监督学习中的线性回归算法。">
+<meta property="og:description" content="本篇将总结监督学习中的线性回归的单变量线性回归。">
 <meta property="og:image" content="http://weirdforce.com/images/house_price.png">
 <meta property="og:image" content="http://weirdforce.com/images/house_train.png">
 <meta property="og:image" content="http://weirdforce.com/images/model.png">
@@ -57,10 +57,11 @@
 <meta property="og:image" content="http://weirdforce.com/images/min_cost_function.png">
 <meta property="og:image" content="http://weirdforce.com/images/gradient_descent_theory.png">
 <meta property="og:image" content="http://weirdforce.com/images/update_gradient.png">
-<meta property="og:updated_time" content="2017-05-10T13:30:31.000Z">
+<meta property="og:image" content="http://weirdforce.com/images/no_need_decrease.png">
+<meta property="og:updated_time" content="2017-05-15T11:57:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learning课程笔记(3)">
-<meta name="twitter:description" content="本篇将总结监督学习中的线性回归算法。">
+<meta name="twitter:description" content="本篇将总结监督学习中的线性回归的单变量线性回归。">
 <meta name="twitter:image" content="http://weirdforce.com/images/house_price.png">
 
 
@@ -276,7 +277,7 @@
       
 
       
-        <span itemprop="articleBody"><p>本篇将总结监督学习中的线性回归算法。<br><a id="more"></a></p>
+        <span itemprop="articleBody"><p>本篇将总结监督学习中的线性回归的单变量线性回归。<br><a id="more"></a></p>
 <h2 id="单变量的线性回归(Linear_Regression_with_One_Variable)">单变量的线性回归(Linear Regression with One Variable)</h2><p>其中，这里将讲解<strong>单变量的线性回归(Linear Regression with One Variable)</strong>。<br>首先，我们来看回之前总结过的预测房价的例子。见下图。<br><img src="/images/house_price.png" alt="Alt text"><br>如图中所说，这里被归为<strong>监督学习</strong>的原因是，我们对每个数据都给出了“正确的答案”。而称为<strong>回归问题</strong>是因为我们能够根据之前的数据预测出一个准确的输出值，即房屋价格。<br>一般来说，在监督学习中，我们有一个数据集，这个数据集被称为<strong>训练集</strong>。以预测房价为例，见下图。<br><img src="/images/house_train.png" alt="Alt text"></p>
 <p>在回归问题中，我们对一些描述的标记如下所示：</p>
 <blockquote>
@@ -292,9 +293,12 @@
 <p><strong>一般来说，代价函数被称为平方误差函数。对于回归问题，是常用的合理的选择。</strong></p>
 <h3 id="梯度下降(Gradient_Descent)">梯度下降(Gradient Descent)</h3><p><strong>梯度下降</strong>指的是一个用来求函数最小值的算法。我们可以使用它求出代价函数$J(\theta_0,\theta_1)$的最小值。</p>
 <p><strong>原理：</strong>通过一开始随机选择的参数组合($\theta_0,\theta_1,…,\theta_n$),计算代价函数，然后在这个过程中寻找下一个能让代价函数值下降最多的参数组合，直到找到一个<strong>局部最小值(local minimum)</strong>。当然，因为并没有将所有的参数组合全部尝试，所以我们不能确定的到的局部最小值就是全局最小值，而选择不同的初始参数组合，可能会找到不同的局部最小值。如下图所示。<br><img src="/images/gradient_descent_theory.png" alt="Alt text"></p>
-<p><strong>算法公式：</strong><br><strong>repeat until convergence { </strong><br>    $$\theta_j:=\theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta)$$<br><strong>}</strong></p>
+<p><strong>算法公式：</strong><br><strong>repeat until convergence</strong> <strong>{</strong><br>    $$\theta_j:=\theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta)$$<br><strong>}</strong></p>
 <p>其中，<strong>$\alpha$是学习率(learning rate)</strong>，决定了沿着能让代价函数下降程度最大方向的每一个迭代的步伐有多大。</p>
 <p><strong>注意事项：</strong> 在梯度下降算法当中，我们需要更新参数值。而更新的过程必须要做到同时更新所有的参数项。例如，在单变量线性回归问题中我们需要同时更新$\theta_0$和$\theta_1$。如下图所示。<br><img src="/images/update_gradient.png" alt="Alt text"></p>
+<h3 id="学习率(Learning_Rate)">学习率(Learning Rate)</h3><p>上面已经提及了学习率的基本概念，下面对学习率$\alpha$的相关知识进行解释。<br>首先$\alpha$的大小是可以调整的，通过调整$\alpha$的值，可以加快算法的运算，减少运算时间。但$\alpha$的值过大和过小会导致一些问题。<br><strong>$\alpha$过大</strong>：会使得梯度下降的算法有可能一下子越过最低点，甚至可能导致无法收敛。<br><strong>$\alpha$过小</strong>：会导致算法的运算时间过长，效率过低。</p>
+<p>在梯度下降算法当中，$\alpha$的值没有必要减小，因为我们在每次迭代对梯度下降算法的参数$\theta$进行更新时，已经在原来的基础中将其更新幅度减小了，这样能够使得我们的算法收敛到我们想要的局部最小值。如下图。</p>
+<p><img src="/images/no_need_decrease.png" alt="Alt text"></p>
 </span>
       
     </div>
@@ -482,7 +486,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单变量的线性回归(Linear_Regression_with_One_Variable)"><span class="nav-number">1.</span> <span class="nav-text">单变量的线性回归(Linear Regression with One Variable)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表示(Model_Representation)"><span class="nav-number">1.1.</span> <span class="nav-text">模型表示(Model Representation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数(Cost_Function)"><span class="nav-number">1.2.</span> <span class="nav-text">代价函数(Cost Function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降(Gradient_Descent)"><span class="nav-number">1.3.</span> <span class="nav-text">梯度下降(Gradient Descent)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单变量的线性回归(Linear_Regression_with_One_Variable)"><span class="nav-number">1.</span> <span class="nav-text">单变量的线性回归(Linear Regression with One Variable)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表示(Model_Representation)"><span class="nav-number">1.1.</span> <span class="nav-text">模型表示(Model Representation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代价函数(Cost_Function)"><span class="nav-number">1.2.</span> <span class="nav-text">代价函数(Cost Function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降(Gradient_Descent)"><span class="nav-number">1.3.</span> <span class="nav-text">梯度下降(Gradient Descent)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习率(Learning_Rate)"><span class="nav-number">1.4.</span> <span class="nav-text">学习率(Learning Rate)</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

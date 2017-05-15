@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Welcome to weirdland！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://weirdforce.com/"/>
-  <updated>2017-05-14T14:16:08.000Z</updated>
+  <updated>2017-05-15T12:18:26.000Z</updated>
   <id>http://weirdforce.com/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Machine-Learning课程笔记(4)]]></title>
+    <link href="http://weirdforce.com/2017/05/15/Machine-Learning-note-4/"/>
+    <id>http://weirdforce.com/2017/05/15/Machine-Learning-note-4/</id>
+    <published>2017-05-15T04:55:23.000Z</published>
+    <updated>2017-05-15T12:18:26.000Z</updated>
+    <content type="html"><![CDATA[<p>本篇将总结监督学习中的线性回归中的多变量线性回归。<br><a id="more"></a></p>
+<h2 id="多变量线性回归(Linear_Regression_with_Multiple_Variables)">多变量线性回归(Linear Regression with Multiple Variables)</h2><h3 id="多维特征(Multiple_Features)">多维特征(Multiple Features)</h3><p><strong>定义:</strong>区别于单一特征向量，当存在多个特征向量去描述一个函数时，需要利用到多元特征向量去表示。多元特征向量的表示方法如下：<br><img src="/images/Multiple_Features.png" alt="Alt text"><br>多元特征向量所表示的函数如下图所示：<br><img src="/images/Multiple_Function.png" alt="Alt text"><br>上式中，可以假设存在一个X0＝1来化简式子，得到下图。<br><img src="/images/Multiple_Function_1.png" alt="Alt text"></p>
+<h3 id="多变量梯度下降(Gradient_Descent_for_Mutiple_Variables)">多变量梯度下降(Gradient Descent for Mutiple Variables)</h3><p><strong>原理：</strong>构造出多特征线性规划后，我们可以通过梯度下降法对其进行求解，此时要选择代价函数J，使目标变量的真实值和预测值的距离最小，故选择最小二乘为代价函数。如下图<br><img src="/images/Cost_Function.png" alt="Alt text"><br>于是得到梯度下降的迭代公式：<br><img src="/images/Gradient_descent.png" alt="Alt text"><br>运算，化简得到：<br><img src="/images/Gradient_descent_1.png" alt="Alt text">   </p>
+<h3 id="特征缩放(Feature_Scaling)">特征缩放(Feature Scaling)</h3><p><strong>特征缩放：</strong>为了使得梯度下降算法在使用的过程中更快收敛，我们在存在多个特征的机器学习的题目中，将各个特征的取值范围缩放到相近的范围，例如:[-1,1]。如图。<br><img src="/images/Feature_scaling.png" alt="Alt text"><br>通常的，我们有Mean normalization:<br>$$x=\frac{x_i-\mu_i}{max-min}$$<br>通过特征缩放能使我们的梯度下降算法收敛得更快。</p>
+<h3 id="学习率(Learning_Rate)">学习率(Learning Rate)</h3><p><strong>学习率a:</strong>我们可以通过对（代价函数最小值——梯度下降迭代次数）的函数图像进行分析，判断梯度下降算法的学习率a是否准确。如下图。<br><img src="/images/Learning_rate_mult.png" alt="Alt text"></p>
+<blockquote>
+<p>(1) 若是这个图像是递增的，说明这个学习率过大。<br>(2) 若是这个图像是递减且收敛缓慢，说明这个学习率过小。<br>(3) 若是这个图像是递减且很快收敛，说明这个学习率合适。<br>  (P.S. 一般对学习率的选取可以选择3倍一取或10倍一取。)</p>
+</blockquote>
+<h3 id="特征和多项式回归(Features_and_Polynomial_Regression)">特征和多项式回归(Features and Polynomial Regression)</h3><p><strong>定义：</strong>在使用多元线性回归的时候，我们应该选取比较合适的模型对数据进行拟合，例如：一元二次函数或一元三次函数。如下图所示：<br><img src="/images/Polynomial_regression.png" alt="Alt text"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本篇将总结监督学习中的线性回归中的多变量线性回归。<br>]]>
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://weirdforce.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Machine-Learning" scheme="http://weirdforce.com/tags/Machine-Learning/"/>
+    
+      <category term="Machine Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[LeetCode#8 String to Integer (atoi)]]></title>
@@ -82,8 +111,8 @@ public:
     <link href="http://weirdforce.com/2017/05/08/Machine-Learning-note-3/"/>
     <id>http://weirdforce.com/2017/05/08/Machine-Learning-note-3/</id>
     <published>2017-05-08T08:13:02.000Z</published>
-    <updated>2017-05-10T13:30:31.000Z</updated>
-    <content type="html"><![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br><a id="more"></a></p>
+    <updated>2017-05-15T11:57:23.000Z</updated>
+    <content type="html"><![CDATA[<p>本篇将总结监督学习中的线性回归的单变量线性回归。<br><a id="more"></a></p>
 <h2 id="单变量的线性回归(Linear_Regression_with_One_Variable)">单变量的线性回归(Linear Regression with One Variable)</h2><p>其中，这里将讲解<strong>单变量的线性回归(Linear Regression with One Variable)</strong>。<br>首先，我们来看回之前总结过的预测房价的例子。见下图。<br><img src="/images/house_price.png" alt="Alt text"><br>如图中所说，这里被归为<strong>监督学习</strong>的原因是，我们对每个数据都给出了“正确的答案”。而称为<strong>回归问题</strong>是因为我们能够根据之前的数据预测出一个准确的输出值，即房屋价格。<br>一般来说，在监督学习中，我们有一个数据集，这个数据集被称为<strong>训练集</strong>。以预测房价为例，见下图。<br><img src="/images/house_train.png" alt="Alt text"></p>
 <p>在回归问题中，我们对一些描述的标记如下所示：</p>
 <blockquote>
@@ -99,12 +128,15 @@ public:
 <p><strong>一般来说，代价函数被称为平方误差函数。对于回归问题，是常用的合理的选择。</strong></p>
 <h3 id="梯度下降(Gradient_Descent)">梯度下降(Gradient Descent)</h3><p><strong>梯度下降</strong>指的是一个用来求函数最小值的算法。我们可以使用它求出代价函数$J(\theta_0,\theta_1)$的最小值。</p>
 <p><strong>原理：</strong>通过一开始随机选择的参数组合($\theta_0,\theta_1,…,\theta_n$),计算代价函数，然后在这个过程中寻找下一个能让代价函数值下降最多的参数组合，直到找到一个<strong>局部最小值(local minimum)</strong>。当然，因为并没有将所有的参数组合全部尝试，所以我们不能确定的到的局部最小值就是全局最小值，而选择不同的初始参数组合，可能会找到不同的局部最小值。如下图所示。<br><img src="/images/gradient_descent_theory.png" alt="Alt text"></p>
-<p><strong>算法公式：</strong><br><strong>repeat until convergence { </strong><br>    $$\theta_j:=\theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta)$$<br><strong>}</strong></p>
+<p><strong>算法公式：</strong><br><strong>repeat until convergence</strong> <strong>{</strong><br>    $$\theta_j:=\theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta)$$<br><strong>}</strong></p>
 <p>其中，<strong>$\alpha$是学习率(learning rate)</strong>，决定了沿着能让代价函数下降程度最大方向的每一个迭代的步伐有多大。</p>
 <p><strong>注意事项：</strong> 在梯度下降算法当中，我们需要更新参数值。而更新的过程必须要做到同时更新所有的参数项。例如，在单变量线性回归问题中我们需要同时更新$\theta_0$和$\theta_1$。如下图所示。<br><img src="/images/update_gradient.png" alt="Alt text"></p>
+<h3 id="学习率(Learning_Rate)">学习率(Learning Rate)</h3><p>上面已经提及了学习率的基本概念，下面对学习率$\alpha$的相关知识进行解释。<br>首先$\alpha$的大小是可以调整的，通过调整$\alpha$的值，可以加快算法的运算，减少运算时间。但$\alpha$的值过大和过小会导致一些问题。<br><strong>$\alpha$过大</strong>：会使得梯度下降的算法有可能一下子越过最低点，甚至可能导致无法收敛。<br><strong>$\alpha$过小</strong>：会导致算法的运算时间过长，效率过低。</p>
+<p>在梯度下降算法当中，$\alpha$的值没有必要减小，因为我们在每次迭代对梯度下降算法的参数$\theta$进行更新时，已经在原来的基础中将其更新幅度减小了，这样能够使得我们的算法收敛到我们想要的局部最小值。如下图。</p>
+<p><img src="/images/no_need_decrease.png" alt="Alt text"></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>本篇将总结监督学习中的线性回归算法。<br>]]>
+    <![CDATA[<p>本篇将总结监督学习中的线性回归的单变量线性回归。<br>]]>
     
     </summary>
     
@@ -178,41 +210,6 @@ public:
       <category term="Machine Learning" scheme="http://weirdforce.com/tags/Machine-Learning/"/>
     
       <category term="机器学习" scheme="http://weirdforce.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="Machine Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Machine-Learning课程笔记]]></title>
-    <link href="http://weirdforce.com/2017/05/05/Machine-Learning/"/>
-    <id>http://weirdforce.com/2017/05/05/Machine-Learning/</id>
-    <published>2017-05-05T04:55:23.000Z</published>
-    <updated>2017-05-08T09:05:21.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="Multivariate_Linear_Regression">Multivariate Linear Regression</h2><a id="more"></a>
-<ol>
-<li><p>Multiple Features<br> 区别于单一特征向量，当存在多个特征向量去描述一个函数时，需要利用到多元特征向量去表示。多元特征向量的表示方法如下：<br> <img src="/images/Multiple_Features.png" alt="Alt text"><br> 多元特征向量所表示的函数如下图所示：<br> <img src="/images/Multiple_Function.png" alt="Alt text"><br> 上式中，可以假设存在一个X0＝1来化简式子，得到下图。<br> <img src="/images/Multiple_Function_1.png" alt="Alt text"></p>
-</li>
-<li><p>Gradient Descent for Mutiple Variables<br> 构造出多特征线性规划后，我们可以通过梯度下降法对其进行求解，此时要选择代价函数J，使目标变量的真实值和预测值的距离最小，故选择最小二乘为代价函数。如下图<br> <img src="/images/Cost_Function.png" alt="Alt text"><br> 于是得到梯度下降的迭代公式：<br> <img src="/images/Gradient_descent.png" alt="Alt text"><br> 运算，化简得到：<br> <img src="/images/Gradient_descent_1.png" alt="Alt text">   </p>
-</li>
-<li><p>Feature Scaling<br> 特征缩放：为了使得梯度下降算法在使用的过程中更快收敛，我们在存在多个特征的机器学习的题目中，将各个特征的取值范围缩放到相近的范围，例如:[-1,1]。<br> 通常的，我们有Mean normalization:<br> $$x=\frac{x_i-\mu_i}{max-min}$$<br> 通过特征缩放能使我们的梯度下降算法收敛得更快。</p>
-</li>
-<li><p>Learning Rate<br> 学习率a:我们可以通过对（代价函数最小值——梯度下降迭代次数）的函数图像进行分析，判断梯度下降算法的学习率a是否准确。<br> (1) 若是这个图像是递增的，说明这个学习率过大。<br> (2) 若是这个图像是递减且收敛缓慢，说明这个学习率过小。<br> (3) 若是这个图像是递减且很快收敛，说明这个学习率合适。<br> (P.S. 一般对学习率的选取可以选择3倍一取或10倍一取。)</p>
-</li>
-<li><p>Features and Polynomial Regression<br> 在使用多元线性回归的时候，我们应该选取比较合适的模型对数据进行拟合，例如：一元二次函数或一元三次函数。如下图所示：<br> <img src="/images/Polynomial_regression.png" alt="Alt text"></p>
-</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="Multivariate_Linear_Regression">Multivariate Linear Regression</h2>]]>
-    
-    </summary>
-    
-      <category term="机器学习" scheme="http://weirdforce.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="Machine-Learning" scheme="http://weirdforce.com/tags/Machine-Learning/"/>
-    
-      <category term="Stanford" scheme="http://weirdforce.com/tags/Stanford/"/>
     
       <category term="Machine Learning" scheme="http://weirdforce.com/categories/Machine-Learning/"/>
     
