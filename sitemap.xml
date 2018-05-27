@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://weirdforce.com/2015/08/18/first-test/</loc>
+    <lastmod>2018-05-27T17:41:56.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://weirdforce.com/2017/04/28/restart/</loc>
     <lastmod>2018-05-27T17:40:17.000Z</lastmod>
   </url>
@@ -144,11 +149,6 @@
   <url>
     <loc>http://weirdforce.com/2015/08/19/BookReview/</loc>
     <lastmod>2015-08-20T15:00:36.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://weirdforce.com/2015/08/18/first-test/</loc>
-    <lastmod>2015-08-18T09:01:44.000Z</lastmod>
   </url>
   
   <url>
