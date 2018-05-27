@@ -232,7 +232,7 @@ public:
 </ol>
 </blockquote>
 <p><strong>聚类问题</strong>：在没有告知算法标签信息的情况下，通过自动地寻找数据集中的结构，让数据自动地聚类到某些类别当中。如：谷歌新闻、基因聚类（如下图）等。<br><img src="/images/Genes.png" alt="Alt text"><br>在基因聚类这个例子中，输入是一组不同的个体，我们通过对个体在基因层面上数据的分析即是否表达了某些特定的基因，运行聚类算法，将个体聚类到不同的类别当中。  </p>
-<p><strong>鸡尾酒宴问题</strong>：在宴会房间中，将声音重叠的数据作为输入，运行无监督学习算法，寻找其中的结构，将各种声音相互剥离开来。（如下图）<br><img src="/images/Cocktail_party.png" alt="Alt text"><br>这个例子中是通过了放置两个麦克风，离说话人的距离不同的每个麦克风记录下不同的声音。虽然是同样的说话的两个说话人，听起来像是两份录音被叠加在一起。但算法还是会区分出两个音源。（详细可看维基百科<strong><a href="https://en.wikipedia.org/wiki/Cocktail_party_effect" target="_blank" rel="external">Cocktail party effect</a></strong>)</p>
+<p><strong>鸡尾酒宴问题</strong>：在宴会房间中，将声音重叠的数据作为输入，运行无监督学习算法，寻找其中的结构，将各种声音相互剥离开来。（如下图）<br><img src="/images/Cocktail_party.png" alt="Alt text"><br>这个例子中是通过了放置两个麦克风，离说话人的距离不同的每个麦克风记录下不同的声音。虽然是同样的说话的两个说话人，听起来像是两份录音被叠加在一起。但算法还是会区分出两个音源。（详细可看维基百科<strong><a href="https://en.wikipedia.org/wiki/Cocktail_party_effect" target="_blank" rel="noopener">Cocktail party effect</a></strong>)</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>本篇总结监督学习和无监督学习。<br>]]>
@@ -325,10 +325,10 @@ public:
   
   <entry>
     <title><![CDATA[恢复使用]]></title>
-    <link href="http://weirdforce.com/2017/04/28/resume/"/>
-    <id>http://weirdforce.com/2017/04/28/resume/</id>
+    <link href="http://weirdforce.com/2017/04/28/restart/"/>
+    <id>http://weirdforce.com/2017/04/28/restart/</id>
     <published>2017-04-28T07:11:15.000Z</published>
-    <updated>2017-04-28T07:12:47.000Z</updated>
+    <updated>2018-05-27T17:40:17.000Z</updated>
     <content type="html"><![CDATA[<p>总算重新布置好了博客，最近开始慢慢把这一年学到的东西进行详细的记录。</p>
 ]]></content>
     <summary type="html">
@@ -338,7 +338,7 @@ public:
     
       <category term="恢复" scheme="http://weirdforce.com/tags/%E6%81%A2%E5%A4%8D/"/>
     
-      <category term="blog" scheme="http://weirdforce.com/categories/blog/"/>
+      <category term="Blog" scheme="http://weirdforce.com/categories/Blog/"/>
     
   </entry>
   
@@ -348,7 +348,7 @@ public:
     <id>http://weirdforce.com/2016/05/19/Exchange-Cards/</id>
     <published>2016-05-19T07:05:30.000Z</published>
     <updated>2017-04-28T07:10:59.000Z</updated>
-    <content type="html"><![CDATA[<p>题目讲述了一个等价交换卡片的故事，其实是为了统计一个价值为n的卡片有多少种组合方式。<br><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2734" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>题目思路：</p>
+    <content type="html"><![CDATA[<p>题目讲述了一个等价交换卡片的故事，其实是为了统计一个价值为n的卡片有多少种组合方式。<br><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2734" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a><br>题目思路：</p>
 <blockquote>
 <p>根据现有卡片对能够构成价值n的卡片，进行DFS，找出所有能构成的方式，统计。</p>
 </blockquote>
@@ -426,7 +426,7 @@ public:
 }
 </code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<p>题目讲述了一个等价交换卡片的故事，其实是为了统计一个价值为n的卡片有多少种组合方式。<br><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2734">题目</a> </strong><br>]]>
+    <![CDATA[<p>题目讲述了一个等价交换卡片的故事，其实是为了统计一个价值为n的卡片有多少种组合方式。<br><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2734" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
@@ -446,7 +446,7 @@ public:
     <id>http://weirdforce.com/2016/05/19/Eight/</id>
     <published>2016-05-19T06:57:35.000Z</published>
     <updated>2017-04-28T07:03:07.000Z</updated>
-    <content type="html"><![CDATA[<p>这题题意很好理解，就是给定模版，然后每次输入一个例子，计算出转换成模版所需的路径。<br><strong> 题目链接: <a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1217" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>这题题意很好理解，就是给定模版，然后每次输入一个例子，计算出转换成模版所需的路径。<br><strong> 题目链接: <a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1217" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a></p>
 <p>题目思路如下：</p>
 <blockquote>
 <ol>
@@ -568,7 +568,7 @@ public:
 }
 </code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<p>这题题意很好理解，就是给定模版，然后每次输入一个例子，计算出转换成模版所需的路径。<br><strong> 题目链接: <a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1217">题目</a> </strong><br>]]>
+    <![CDATA[<p>这题题意很好理解，就是给定模版，然后每次输入一个例子，计算出转换成模版所需的路径。<br><strong> 题目链接: <a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1217" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
@@ -588,7 +588,7 @@ public:
     <id>http://weirdforce.com/2016/05/19/Additive-equations/</id>
     <published>2016-05-19T06:50:24.000Z</published>
     <updated>2017-04-28T07:04:40.000Z</updated>
-    <content type="html"><![CDATA[<p><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1204" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>这题题意为从一个数字序列中找出所有可能出现的等式。</p>
+    <content type="html"><![CDATA[<p><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1204" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a><br>这题题意为从一个数字序列中找出所有可能出现的等式。</p>
 <p>题目思路如下：</p>
 <blockquote>
 <ol>
@@ -673,7 +673,7 @@ flag = <span class="literal">false</span>;
 }
 </code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<p><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1204">题目</a> </strong><br>]]>
+    <![CDATA[<p><strong> 题目链接:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1204" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
@@ -826,7 +826,7 @@ flag = <span class="literal">false</span>;
     <published>2016-03-12T04:37:33.000Z</published>
     <updated>2017-04-28T04:41:31.000Z</updated>
     <content type="html"><![CDATA[<p>这道题十分简单，不过需要注意使用gets函数～</p>
-<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2734" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a></p>
+<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2734" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a></p>
 <p>解题思路：</p>
 <blockquote>
 <ol>
@@ -858,7 +858,7 @@ flag = <span class="literal">false</span>;
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<p>这道题十分简单，不过需要注意使用gets函数～</p>
-<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2734">题目</a> </strong><br>]]>
+<p><strong> 题目链接:<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2734" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
@@ -879,7 +879,7 @@ flag = <span class="literal">false</span>;
     <published>2016-03-12T04:28:58.000Z</published>
     <updated>2017-04-28T04:36:06.000Z</updated>
     <content type="html"><![CDATA[<p>这是一道检验回文数的程序（在2～16进制下）～</p>
-<p><strong> 题目链接：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1078" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>思路大致如下：</p>
+<p><strong> 题目链接：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1078" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a><br>思路大致如下：</p>
 <blockquote>
 <ol>
 <li>需要一个字符数组用于记录输入数在某进制下的表示数，然后对其进行头尾回文比较。</li>
@@ -933,7 +933,7 @@ flag = <span class="literal">false</span>;
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<p>这是一道检验回文数的程序（在2～16进制下）～</p>
-<p><strong> 题目链接：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1078">题目</a> </strong><br>]]>
+<p><strong> 题目链接：<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1078" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
@@ -953,7 +953,7 @@ flag = <span class="literal">false</span>;
     <id>http://weirdforce.com/2016/03/12/I-Think-I-Need-a-Houseboat/</id>
     <published>2016-03-12T04:25:33.000Z</published>
     <updated>2017-04-28T04:27:56.000Z</updated>
-    <content type="html"><![CDATA[<p>刚刚AC了一道题目，又是一道数学题目～<br><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1065" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>刚刚AC了一道题目，又是一道数学题目～<br><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1065" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a></p>
 <p>解题思路如下：</p>
 <blockquote>
 <ol>
@@ -982,7 +982,7 @@ flag = <span class="literal">false</span>;
 }
 </code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<p>刚刚AC了一道题目，又是一道数学题目～<br><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1065">题目</a> </strong><br>]]>
+    <![CDATA[<p>刚刚AC了一道题目，又是一道数学题目～<br><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1065" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
@@ -1003,7 +1003,7 @@ flag = <span class="literal">false</span>;
     <published>2016-03-12T04:20:28.000Z</published>
     <updated>2017-04-28T04:24:22.000Z</updated>
     <content type="html"><![CDATA[<p>前几天AC的一道简单题目～学到了一些东西～</p>
-<p><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1064" target="_blank" rel="external">题目</a> </strong></p>
+<p><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1064" target="_blank" rel="noopener">题目</a> </strong></p>
 <a id="more"></a>
 <p>题目比较简单，思路就是输入十二个月的金额求平均值(保留两位小数，四舍五入)。<br>这题我WA了很多次，原因是：</p>
 <blockquote>
@@ -1027,7 +1027,7 @@ count1+=a;
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<p>前几天AC的一道简单题目～学到了一些东西～</p>
-<p><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1064">题目</a> </strong></p>]]>
+<p><strong> 题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1064" target="_blank" rel="noopener">题目</a> </strong></p>]]>
     
     </summary>
     
@@ -1048,7 +1048,7 @@ count1+=a;
     <published>2016-03-12T04:13:35.000Z</published>
     <updated>2017-04-28T04:19:05.000Z</updated>
     <content type="html"><![CDATA[<p>又是一道比较简单的题目～</p>
-<p><strong> 题目链接: <a href="http://poj.org/problem?id=1046" target="_blank" rel="external">题目</a> </strong><br><a id="more"></a><br>题目思路如下：</p>
+<p><strong> 题目链接: <a href="http://poj.org/problem?id=1046" target="_blank" rel="noopener">题目</a> </strong><br><a id="more"></a><br>题目思路如下：</p>
 <blockquote>
 <ol>
 <li>输入16组已知RGB，输出余下输入所对应的映射。</li>
@@ -1087,7 +1087,7 @@ count1+=a;
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<p>又是一道比较简单的题目～</p>
-<p><strong> 题目链接: <a href="http://poj.org/problem?id=1046">题目</a> </strong><br>]]>
+<p><strong> 题目链接: <a href="http://poj.org/problem?id=1046" target="_blank" rel="noopener">题目</a> </strong><br>]]>
     
     </summary>
     
